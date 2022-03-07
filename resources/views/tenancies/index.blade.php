@@ -10,7 +10,7 @@
                                 <img src="{{ asset('storage/' . $tenancy->property->image) }}" alt="image"/>
                             </div>
 
-                            @if($tenancy->property->mortgage_status == true)
+                            @if(!$tenancy->property->mortgage_status == null)
                                 <p class="card-action"><i class="fa fa-heart">Mortgaged</i></p>
                             @endif
                             <div class="card-heading">
