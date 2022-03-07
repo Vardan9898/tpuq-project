@@ -1,5 +1,6 @@
 <x-layout>
-    <main style="margin-top:50px; margin-left: 75px; margin-right: 75px">
+    <link rel="stylesheet" href="{{ asset('storage/css/style-for-tenancies-index.css') }}">
+    <main>
         @if($tenancies->count())
             <div class="row d-flex justify-content-center">
                 @foreach($tenancies as $tenancy)
@@ -32,14 +33,14 @@
                                 <p>Tenant: {{ $tenancy->tenant->name }}</p>
                             </div>
                             <div class="d-flex">
-                                <a href="/tenancies/{{ $tenancy->id }}/edit" class="card-button-edit">Edit or delete</a>
-                                <form action="/tenancies/{{ $tenancy->id }}" class="col-6" method="POST">
+                                <a href="{{ route('tenancies.edit', $tenancy->id) }}" class="card-button-edit">Edit</a>
+                                <form action="/tenancies/{{ $tenancy->id }}/delete" class="col-6" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="card-button-delete">Delete</button>
                                 </form>
                             </div>
-                            <a href="/tenancies/{{ $tenancy->property->id }}/create" class="card-button-make mb-5">Make
+                            <a href="{{ route('tenancies.create', $tenancy->property->id) }}" class="card-button-make mb-5">Make
                                 new tenancy for {{ $tenancy->property->name }}</a>
                         </div>
                     </div>
@@ -47,9 +48,5 @@
             </div>
             {{ $tenancies->links('pagination::bootstrap-5') }}
         @endif
-
     </main>
 </x-layout>
-
-
-@include('style.css')

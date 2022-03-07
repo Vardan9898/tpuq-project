@@ -17,12 +17,12 @@ class Property extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class);
     }
 
     public function tenant()
     {
-        return $this->belongsTo(Tenant::class);
+        return $this->belongsToMany(Tenant::class);
     }
 
     public function tenancies()

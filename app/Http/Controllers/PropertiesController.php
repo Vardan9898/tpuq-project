@@ -23,25 +23,20 @@ class PropertiesController extends Controller
     public function store()
     {
         $attributes = request()->validate([
-            'name'            => 'required',
-            'image'           => 'required|image',
-            'address'         => 'required',
-            'description'     => 'required',
+            'name'            => 'required|string|max:255',
+            'image'           => 'required|image|max:10240',
+            'address'         => 'required|string|max:255',
+            'description'     => 'required|string|max:1000',
             'mortgage_status' => 'boolean',
-            'price'           => 'required|numeric',
+            'price'           => 'required|numeric|digits_between:1,255',
         ]);
-        if (request()->get('mortgage_status') == null) {
-            $mortgage_status = 0;
-        } else {
-            $mortgage_status = request('mortgage_status');
-        }
 
         $attributes['user_id'] = auth()->id();
         $attributes['image'] = request()->file('image')->store('prop_img');
 
         Property::create($attributes);
 
-        return redirect('/properties');
+        return redirect()->route('properties')->with('success', 'Property created!');
     }
 
     public function show(Property $property)
@@ -58,30 +53,37 @@ class PropertiesController extends Controller
         ]);
     }
 
-    public function update(Property $property)
+    public function update(Request $request, Property $property)
     {
-        $attributes = request()->validate([
-            'name'            => 'required',
-            'image'           => 'image',
-            'address'         => 'required',
-            'description'     => 'required',
-            'mortgage_status' => 'boolean',
-            'price'           => 'required|numeric',
+        $request->validate([
+            'name'            => 'required|string|max:255',
+            'image'           => 'image|max:10240',
+            'address'         => 'required|string|max:255',
+            'description'     => 'required|string|max:1000',
+            'price'           => 'required|numeric|digits_between:1,255',
         ]);
 
-        if ($attributes['image'] ?? false) {
+        $attributes = [
+            'name'            => $request->name,
+            'address'         => $request->address,
+            'description'     => $request->description,
+            'mortgage_status' => (bool) $request->mortgage_status,
+            'price'           => $request->price,
+        ];
+
+        if (request()->has('image')) {
             $attributes['image'] = request()->file('image')->store('prop_img');
         }
 
         $property->update($attributes);
 
-        return redirect('/properties')->with('success', 'Property Updated!');
+        return redirect()->route('properties')->with('success', 'Property updated!');
     }
 
     public function destroy(Property $property)
     {
         $property->delete();
 
-        return redirect('/properties')->with('success', 'Property deleted');
+        return redirect()->route('properties')->with('success', 'Property deleted!');
     }
 }

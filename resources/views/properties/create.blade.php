@@ -2,7 +2,7 @@
     <div class="mt-5 col-6 m-auto d-flex justify-content-center">
         <h1>Here you can create your property</h1>
     </div>
-    <form action="/properties/create" method="POST" class="col-4 m-auto mt-5" enctype="multipart/form-data">
+    <form action="/properties/store" method="POST" class="col-4 m-auto mt-5" enctype="multipart/form-data">
         @csrf
         <div class="mb-3">
             <label class="form-label">Property name</label>
@@ -33,8 +33,6 @@
         </div>
 
         @include('error')
-        <div>
-            <button type="submit" class="btn btn-success">Create property</button>
-        </div>
+        <button type="submit" class="btn btn-success">Create property</button>
     </form>
 </x-layout>

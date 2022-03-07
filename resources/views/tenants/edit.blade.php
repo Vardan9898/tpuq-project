@@ -3,7 +3,7 @@
         <h1>Here you can update tenant {{ $tenant->name }}</h1>
     </div>
     <div class="col-4 m-auto mt-5">
-        <form action="/tenants/{{ $tenant->id }}/edit" method="POST" enctype="multipart/form-data">
+        <form action="/tenants/{{ $tenant->id }}/update" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PATCH')
             <div class="mb-3">
@@ -26,7 +26,7 @@
                 <button type="submit" class="btn btn-warning">Update tenant</button>
             </div>
         </form>
-        <form action="/tenants/{{ $tenant->id }}/edit" class="mt-2" method="POST">
+        <form action="/tenants/{{ $tenant->id }}/delete" class="mt-2" method="POST">
             @csrf
             @method('DELETE')
             <button class="btn btn-danger">Delete</button>

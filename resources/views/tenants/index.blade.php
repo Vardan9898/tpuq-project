@@ -9,10 +9,11 @@
                     <h5 class="mb-0">{{ $tenant->name }}</h5>
                     <span class="small text-uppercase text-muted">{{ $tenant->address }}</span>
                 </div>
-                <a href="/tenants/{{ $tenant->id }}/edit" class="btn btn-warning w-100">Edit or delete</a>
+                <a href="{{ route('tenants.edit', $tenant->id) }}" class="btn btn-warning w-100">Edit or delete</a>
             </div>
 
         @endforeach
     </div>
     {{ $tenants->links('pagination::bootstrap-5') }}
 </x-layout>
+

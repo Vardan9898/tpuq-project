@@ -3,21 +3,21 @@
         <h2>Here you can edit property {{ $property->name }}</h2>
     </div>
     <div class="col-4 m-auto mt-3">
-        <form action="/properties/{{ $property->id }}/edit" method="POST" enctype="multipart/form-data">
+        <form action="/properties/{{ $property->id }}/update" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PATCH')
             <div class="mb-3">
                 <label class="form-label">Property name</label>
-                <input type="text" class="form-control" id="name" name="name" value="{{ $property->name }}">
+                <input type="text" class="form-control" id="name" name="name" value="{{ old('name', $property->name) }}">
             </div>
             <div class="mb-3">
                 <label class="form-label">Property address</label>
-                <input type="text" class="form-control" id="address" name="address" value="{{ $property->address }}">
+                <input type="text" class="form-control" id="address" name="address" value="{{ old('name', $property->address) }}">
             </div>
             <div class="mb-3">
                 <label class="form-label">Description</label>
                 <textarea type="text" class="form-control" id="description"
-                          name="description">{{ $property->description }}</textarea>
+                          name="description">{{ old('name', $property->description) }}</textarea>
             </div>
             <div class="input mb-4">
                 <label for="image" class="form-label mb-3">Property image</label>
@@ -28,21 +28,19 @@
             </div>
             <div class="mb-3">
                 <label class="form-label">Price $</label>
-                <input type="number" class="form-control" id="price" name="price" value="{{ $property->price }}">
+                <input type="number" class="form-control" id="price" name="price" value="{{ old('name', $property->price) }}">
             </div>
             <div class="form-check form-switch mb-3">
                 <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" name="mortgage_status"
-                       value="1" {{ $property->mortgage_status == '1' ? 'checked' : '' }}>
+                   {{ !$property->mortgage_status == null ? 'checked' : '' }}>
                 <label style="color: red" class="form-check-label" for="flexSwitchCheckDefault">If your property is
                     mortgaged please check this input</label>
             </div>
 
             @include('error')
-            <div>
-                <button type="submit" class="btn btn-warning">Update property</button>
-            </div>
+            <button type="submit" class="btn btn-warning">Update property</button>
         </form>
-        <form action="/properties/{{ $property->id }}/edit" class="mt-2" method="POST">
+        <form action="/properties/{{ $property->id }}/delete" class="mt-2" method="POST">
             @csrf
             @method('DELETE')
             <button class="btn btn-danger">Delete</button>

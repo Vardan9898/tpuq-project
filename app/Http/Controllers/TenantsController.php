@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Tenant;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
-use phpDocumentor\Reflection\DocBlock\Tags\Example;
 
 class TenantsController extends Controller
 {
@@ -24,9 +23,9 @@ class TenantsController extends Controller
     public function store()
     {
         $attributes = request()->validate([
-            'name'    => 'required|max:255',
-            'image'   => 'required|image',
-            'address' => 'required|max:255',
+            'name'    => 'required|string|max:255',
+            'image'   => 'required|image|max:10240',
+            'address' => 'required|string|max:255',
         ]);
 
         $attributes['user_id'] = auth()->id();
@@ -34,7 +33,7 @@ class TenantsController extends Controller
 
         Tenant::create($attributes);
 
-        return redirect('/tenants');
+        return redirect()->route('tenants')->with('success', 'Tenant created!');
     }
 
     public function edit(Tenant $tenant)
@@ -47,24 +46,24 @@ class TenantsController extends Controller
     public function update(Tenant $tenant)
     {
         $attributes = request()->validate([
-            'name'    => 'required',
-            'image'   => 'image',
-            'address' => 'required',
+            'name' => 'required|string|max:255',
+            'image'   => 'image|max:10240',
+            'address' => 'required|string|max:255',
         ]);
 
-        if ($attributes['image'] ?? false) {
+        if (request()->has('image')) {
             $attributes['image'] = request()->file('image')->store('tenants');
         }
 
         $tenant->update($attributes);
 
-        return redirect('/tenants')->with('success', 'Tenant Updated!');
+        return redirect()->route('tenants')->with('success', 'Tenant updated!');
     }
 
     public function destroy(Tenant $tenant)
     {
         $tenant->delete();
 
-        return redirect('/tenants')->with('success', 'Tenant deleted');
+        return redirect()->route('tenants')->with('success', 'Tenant deleted!');
     }
 }

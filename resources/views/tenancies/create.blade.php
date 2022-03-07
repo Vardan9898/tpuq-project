@@ -22,9 +22,9 @@
                 Mortgaged status
             </label>
         </div>
-        <form action="/tenancies/{{ $property->id }}/create" class="mt-3 w-25" method="POST">
+        <form action="/tenancies/{{ $property->id }}/store" class="mt-3 w-25" method="POST">
             @csrf
-            <select class="form-select" aria-label="Default select example" name="tenant">
+            <select class="form-select" name="tenant">
                 <option selected>Select the tenant</option>
                 @foreach($tenants as $tenant)
                     <option value="{{ $tenant->id }}">{{ $tenant->name }}</option>

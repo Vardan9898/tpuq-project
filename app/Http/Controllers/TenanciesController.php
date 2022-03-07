@@ -20,43 +20,41 @@ class TenanciesController extends Controller
     {
         return view('tenancies.create', [
             'property' => $property,
-            'tenants'  => Tenant::latest()->get()->all(),
+            'tenants'  => Tenant::latest()->get(),
         ]);
     }
 
-    public function store(Tenant $tenant, Property $property)
+    public function store(Property $property)
     {
         $property->tenancies()->create([
             'user_id'   => request()->user()->id,
             'tenant_id' => request('tenant'),
         ]);
 
-        return redirect('tenancies')->with('success', 'Tenancy created');
+        return redirect()->route('tenancies')->with('success', 'Tenancy created!');
     }
 
     public function edit(Tenancy $tenancy)
     {
         return view('tenancies.edit', [
             'tenancy'     => $tenancy,
-            'tenant_name' => $tenancy->tenant['name'],
-            'tenants'     => Tenant::latest()->get()->all(),
+            'selectedTenant' => $tenancy->tenant->id,
+            'tenants'     => Tenant::latest()->get(),
         ]);
     }
 
     public function update(Tenancy $tenancy)
     {
-        $attributes['tenant_id'] = \request('tenant');
 
+        $tenancy->update(['tenant_id' => request()->tenant]);
 
-        $tenancy->update($attributes);
-
-        return redirect('/tenancies')->with('success', 'Tenancy updated');
+        return redirect()->route('tenancies')->with('success', 'Tenancy updated!');
     }
 
     public function destroy(Tenancy $tenancy)
     {
         $tenancy->delete();
 
-        return redirect('/tenancies')->with('success', 'Tenancy deleted');
+        return redirect()->route('tenancies')->with('success', 'Tenancy deleted!');
     }
 }
