@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tenant;
-use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
 
 class TenantsController extends Controller
 {
@@ -29,11 +27,12 @@ class TenantsController extends Controller
         ]);
 
         $attributes['user_id'] = auth()->id();
-        $attributes['image'] = request()->file('image')->store('tenants');
+        request()->file('image')->store('public/tenants');
+        $attributes['image'] = request()->file('image')->hashName();
 
         Tenant::create($attributes);
 
-        return redirect()->route('tenants')->with('success', 'Tenant created!');
+        return redirect()->action([TenantsController::class, 'index'])->with('success', 'Tenant created!');
     }
 
     public function edit(Tenant $tenant)
@@ -52,18 +51,20 @@ class TenantsController extends Controller
         ]);
 
         if (request()->has('image')) {
-            $attributes['image'] = request()->file('image')->store('tenants');
+            request()->file('image')->store('public/tenants');
+            $attributes['image'] = request()->file('image')->hashName();
         }
 
         $tenant->update($attributes);
 
-        return redirect()->route('tenants')->with('success', 'Tenant updated!');
+        return redirect()->action([TenantsController::class, 'index'])->with('success', 'Tenant updated!');
+
     }
 
     public function destroy(Tenant $tenant)
     {
         $tenant->delete();
 
-        return redirect()->route('tenants')->with('success', 'Tenant deleted!');
+        return redirect()->action([TenantsController::class, 'index'])->with('success', 'Tenant deleted!');
     }
 }

@@ -3,7 +3,7 @@
         <h2>Here you can edit property {{ $property->name }}</h2>
     </div>
     <div class="col-4 m-auto mt-3">
-        <form action="/properties/{{ $property->id }}/update" method="POST" enctype="multipart/form-data">
+        <form action="{{ action([\App\Http\Controllers\PropertiesController::class, 'update'], $property->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PATCH')
             <div class="mb-3">
@@ -22,7 +22,7 @@
             <div class="input mb-4">
                 <label for="image" class="form-label mb-3">Property image</label>
                 <div style="max-width: 150px;" class="mb-2">
-                    <img width="100%" src="{{ asset('storage/' . $property->image) }}" alt="...">
+                    <img width="100%" src="{{ asset('storage/prop_img/' . $property->image) }}" alt="...">
                 </div>
                 <input type="file" class="form-control" id="image" name="image">
             </div>
@@ -32,7 +32,7 @@
             </div>
             <div class="form-check form-switch mb-3">
                 <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" name="mortgage_status"
-                   {{ !$property->mortgage_status == null ? 'checked' : '' }}>
+                   {{ $property->mortgage_status ? 'checked' : '' }}>
                 <label style="color: red" class="form-check-label" for="flexSwitchCheckDefault">If your property is
                     mortgaged please check this input</label>
             </div>
@@ -40,7 +40,7 @@
             @include('error')
             <button type="submit" class="btn btn-warning">Update property</button>
         </form>
-        <form action="/properties/{{ $property->id }}/delete" class="mt-2" method="POST">
+        <form action="{{ action([\App\Http\Controllers\PropertiesController::class, 'destroy'], $property->id) }}" class="mt-2" method="POST">
             @csrf
             @method('DELETE')
             <button class="btn btn-danger">Delete</button>

@@ -20,7 +20,7 @@ class Property extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function tenant()
+    public function tenants()
     {
         return $this->belongsToMany(Tenant::class);
     }

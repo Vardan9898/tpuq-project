@@ -2,7 +2,7 @@
     <div class="mt-5 col-6 m-auto d-flex justify-content-center">
         <h1>Here you can create your property</h1>
     </div>
-    <form action="/properties/store" method="POST" class="col-4 m-auto mt-5" enctype="multipart/form-data">
+    <form action="{{ action([\App\Http\Controllers\PropertiesController::class, 'store']) }}" method="POST" class="col-4 m-auto mt-5" enctype="multipart/form-data">
         @csrf
         <div class="mb-3">
             <label class="form-label">Property name</label>
@@ -23,7 +23,7 @@
         </div>
         <div class="mb-3">
             <label class="form-label">Price $</label>
-            <input type="number" class="form-control" id="price" name="price" value="{{ old('price') }}">
+            <input type="text" class="form-control" id="price" name="price" value="{{ old('price') }}">
         </div>
         <div class="form-check form-switch mb-3">
             <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" name="mortgage_status"

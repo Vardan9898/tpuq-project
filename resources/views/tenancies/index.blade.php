@@ -1,5 +1,5 @@
 <x-layout>
-    <link rel="stylesheet" href="{{ asset('storage/css/style-for-tenancies-index.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style-for-tenancies-index.css') }}">
     <main>
         @if($tenancies->count())
             <div class="row d-flex justify-content-center">
@@ -7,40 +7,35 @@
                     <div class="col-md-3">
                         <div class="card-sl">
                             <div class="card-image">
-                                <img src="{{ asset('storage/' . $tenancy->property->image) }}" alt="image"/>
+                                <img src="{{ asset('storage/prop_img/' . $tenancy->property->image) }}" alt="image"/>
                             </div>
-
                             @if(!$tenancy->property->mortgage_status == null)
                                 <p class="card-action"><i class="fa fa-heart">Mortgaged</i></p>
                             @endif
                             <div class="card-heading">
-                                <h3>
-                                    {{ $tenancy->property->name }}
-                                </h3>
-                            </div>
-                            <div class="card-heading">
-                                <h5>
-                                    {{ $tenancy->property->address }}
-                                </h5>
+                                <h3>{{ $tenancy->property->name }}</h3>
                             </div>
                             <div class="card-text">
-                                <p class="card-title">{{ $tenancy->property->description }}</p>
+                                <p>Address: {{ $tenancy->property->address }}</p>
                             </div>
                             <div class="card-text">
-                                <p>${{ $tenancy->property->price }}</p>
+                                <p class="card-title">Description: {{ $tenancy->property->description }}</p>
+                            </div>
+                            <div class="card-text">
+                                <p>Price: ${{ $tenancy->property->price }}</p>
                             </div>
                             <div class="card-text">
                                 <p>Tenant: {{ $tenancy->tenant->name }}</p>
                             </div>
                             <div class="d-flex">
-                                <a href="{{ route('tenancies.edit', $tenancy->id) }}" class="card-button-edit">Edit</a>
-                                <form action="/tenancies/{{ $tenancy->id }}/delete" class="col-6" method="POST">
+                                <a href="{{ action([\App\Http\Controllers\TenanciesController::class, 'edit'], $tenancy->id) }}" class="card-button-edit">Edit</a>
+                                <form action="{{ action([\App\Http\Controllers\TenanciesController::class, 'destroy'], $tenancy->id) }}" class="col-6" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="card-button-delete">Delete</button>
                                 </form>
                             </div>
-                            <a href="{{ route('tenancies.create', $tenancy->property->id) }}" class="card-button-make mb-5">Make
+                            <a href="{{ action([\App\Http\Controllers\TenanciesController::class, 'create'], $tenancy->property->id) }}" class="card-button-make mb-5">Make
                                 new tenancy for {{ $tenancy->property->name }}</a>
                         </div>
                     </div>

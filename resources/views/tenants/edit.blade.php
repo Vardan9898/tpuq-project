@@ -3,7 +3,7 @@
         <h1>Here you can update tenant {{ $tenant->name }}</h1>
     </div>
     <div class="col-4 m-auto mt-5">
-        <form action="/tenants/{{ $tenant->id }}/update" method="POST" enctype="multipart/form-data">
+        <form action="{{ action([\App\Http\Controllers\TenantsController::class, 'update'], $tenant->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PATCH')
             <div class="mb-3">
@@ -17,7 +17,7 @@
             <div class="input mb-4">
                 <label for="image" class="form-label mb-3">Tenant image</label>
                 <div style="max-width: 150px;" class="mb-2">
-                    <img width="100%" src="{{ asset('storage/' . $tenant->image) }}" alt="...">
+                    <img width="100%" src="{{ asset('storage/tenants/' . $tenant->image) }}" alt="...">
                 </div>
                 <input type="file" class="form-control" id="image" name="image">
             </div>
@@ -26,7 +26,7 @@
                 <button type="submit" class="btn btn-warning">Update tenant</button>
             </div>
         </form>
-        <form action="/tenants/{{ $tenant->id }}/delete" class="mt-2" method="POST">
+        <form action="{{ action([\App\Http\Controllers\TenantsController::class, 'destroy'], $tenant->id) }}" class="mt-2" method="POST">
             @csrf
             @method('DELETE')
             <button class="btn btn-danger">Delete</button>

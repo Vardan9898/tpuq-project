@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Property;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
 
 class PropertiesController extends Controller
 {
@@ -20,9 +19,9 @@ class PropertiesController extends Controller
         return view('properties.create');
     }
 
-    public function store()
+    public function store(Request $request)
     {
-        $attributes = request()->validate([
+        $attributes = $request->validate([
             'name'            => 'required|string|max:255',
             'image'           => 'required|image|max:10240',
             'address'         => 'required|string|max:255',
@@ -32,11 +31,12 @@ class PropertiesController extends Controller
         ]);
 
         $attributes['user_id'] = auth()->id();
-        $attributes['image'] = request()->file('image')->store('prop_img');
+        $request->file('image')->store('/public/prop_img');
+        $attributes['image'] = $request->file('image')->hashName();
 
         Property::create($attributes);
 
-        return redirect()->route('properties')->with('success', 'Property created!');
+        return redirect()->action([PropertiesController::class, 'index'])->with('success', 'Property created!');
     }
 
     public function show(Property $property)
@@ -56,11 +56,11 @@ class PropertiesController extends Controller
     public function update(Request $request, Property $property)
     {
         $request->validate([
-            'name'            => 'required|string|max:255',
-            'image'           => 'image|max:10240',
-            'address'         => 'required|string|max:255',
-            'description'     => 'required|string|max:1000',
-            'price'           => 'required|numeric|digits_between:1,255',
+            'name'        => 'required|string|max:255',
+            'image'       => 'image|max:10240',
+            'address'     => 'required|string|max:255',
+            'description' => 'required|string|max:1000',
+            'price'       => 'required|numeric|digits_between:1,255',
         ]);
 
         $attributes = [
@@ -71,19 +71,20 @@ class PropertiesController extends Controller
             'price'           => $request->price,
         ];
 
-        if (request()->has('image')) {
-            $attributes['image'] = request()->file('image')->store('prop_img');
+        if ($request->has('image')) {
+            $request->file('image')->store('/public/prop_img');
+            $attributes['image'] = $request->file('image')->hashName();
         }
 
         $property->update($attributes);
 
-        return redirect()->route('properties')->with('success', 'Property updated!');
+        return redirect()->action([PropertiesController::class, 'index'])->with('success', 'Property updated!');
     }
 
     public function destroy(Property $property)
     {
         $property->delete();
 
-        return redirect()->route('properties')->with('success', 'Property deleted!');
+        return redirect()->action([PropertiesController::class, 'index'])->with('success', 'Property deleted!');
     }
 }

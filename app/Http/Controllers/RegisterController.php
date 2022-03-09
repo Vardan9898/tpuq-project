@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -26,12 +25,11 @@ class RegisterController extends Controller
             'password' => 'required|string|max:255|min:6',
             'image'    => 'required|image|max:10240',
         ]);
-        $attributes['image'] = request()->file('image')->store('images');
+        $attributes['image'] = request()->file('image')->store('public/images');
 
         $user = User::create($attributes);
         auth()->login($user);
 
-        return redirect('/properties')->with('success', 'Your account has been created.');
+        return redirect()->action([PropertiesController::class, 'index'])->with('success', 'Your account has been created.');
     }
-
 }

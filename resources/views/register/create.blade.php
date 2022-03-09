@@ -1,8 +1,8 @@
 <x-layout>
     <div class="mt-5 col-6 m-auto d-flex justify-content-center">
-        <h1>Here you can register in our web site or <a class="btn btn-primary" href="/login">Login</a></h1>
+        <h1>Here you can register in our web site or <a class="btn btn-primary" href="{{ action([\App\Http\Controllers\SessionsController::class, 'create']) }}">Login</a></h1>
     </div>
-    <form action="/register" method="POST" class="col-4 m-auto mt-5" enctype="multipart/form-data">
+    <form action="{{ action([\App\Http\Controllers\RegisterController::class, 'store']) }}" method="POST" class="col-4 m-auto mt-5" enctype="multipart/form-data">
         @csrf
         <div class="mb-3">
             <label class="form-label">Name</label>

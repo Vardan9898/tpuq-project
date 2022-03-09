@@ -17,14 +17,14 @@
         </div>
         <div class="form-check">
             <input class="form-check-input" type="radio" name="flexRadioDisabled" id="flexRadioDisabled"
-                   disabled {{ $property->mortgage_status == '1' ? 'checked' : '' }}>
+                   disabled {{ $property->mortgage_status ? 'checked' : '' }}>
             <label class="form-check-label" for="flexRadioDisabled">
                 Mortgaged status
             </label>
         </div>
-        <form action="/tenancies/{{ $property->id }}/store" class="mt-3 w-25" method="POST">
+        <form action="{{ action([\App\Http\Controllers\TenanciesController::class, 'store'], $property->id) }}" class="mt-3 w-25" method="POST">
             @csrf
-            <select class="form-select" name="tenant">
+            <select class="form-select" name="tenant_id">
                 <option selected>Select the tenant</option>
                 @foreach($tenants as $tenant)
                     <option value="{{ $tenant->id }}">{{ $tenant->name }}</option>

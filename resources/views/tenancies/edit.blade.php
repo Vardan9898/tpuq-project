@@ -22,12 +22,12 @@
                 Mortgaged status
             </label>
         </div>
-        <form action="/tenancies/{{ $tenancy->id }}/update" class="mt-3 w-25" method="POST">
+        <form action="{{ action([\App\Http\Controllers\TenanciesController::class, 'update'], $tenancy->id) }}" class="mt-3 w-25" method="POST">
             @csrf
             @method('PATCH')
             <select class="form-select" aria-label="Default select example" name="tenant">
                 @foreach($tenants as $tenant)
-                    <option {{ $selectedTenant == $tenant->id ? 'selected' : '' }} value="{{ $tenant->id }}">{{ $tenant->name }}</option>
+                    <option {{ $selectedTenant == $tenant ? 'selected' : '' }} value="{{ $tenant->id }}">{{ $tenant->name }}</option>
                 @endforeach
             </select>
             <div class="d-flex justify-content-center">
