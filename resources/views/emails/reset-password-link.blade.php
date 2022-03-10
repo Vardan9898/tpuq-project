@@ -318,8 +318,8 @@
         </table>
     </div>
 </footer>
-
-<p class="full">Some text Lorem ipsum dolor sit amet, consectetur adipisicing elit. A architecto commodi corporis delectus distinctio dolores eum, in ipsa ipsum iusto modi mollitia officia placeat quae, qui quidem recusandae vel vitae!</p>
-
+<div class="aaa">
+    <p class="full">Some text Lorem ipsum dcdcdcccccccccccccccccccdolor sit amet, consectetur adipisicing elit. A architecto commodi corporis delectus distinctio dolores eum, in ipsa ipsum iusto modi mollitia officia placeat quae, qui quidem recusandae vel vitae!</p>
+</div>
 </body>
 </html>
