@@ -13,12 +13,12 @@ class Tenant extends Model
 
     public function properties()
     {
-        return $this->belongsToMany(Property::class);
+        return $this->belongsToMany(Property::class, 'tenancies');
     }
 
     public function tenancies()
     {
-        return $this->hasMany(Tenancy::class);
+        return $this->belongsToMany(Tenancy::class);
     }
 
     public function getImageUrlAttribute()

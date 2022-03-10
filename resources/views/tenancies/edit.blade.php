@@ -17,12 +17,13 @@
         </div>
         <div class="form-check">
             <input class="form-check-input" type="radio" name="flexRadioDisabled" id="flexRadioDisabled"
-                   disabled {{ $tenancy->property->mortgage_status == '1' ? 'checked' : '' }}>
+                   disabled {{ $tenancy->property->mortgage_status ? 'checked' : '' }}>
             <label class="form-check-label" for="flexRadioDisabled">
                 Mortgaged status
             </label>
         </div>
-        <form action="{{ action([\App\Http\Controllers\TenanciesController::class, 'update'], $tenancy->id) }}" class="mt-3 w-25" method="POST">
+        <form action="{{ action([\App\Http\Controllers\TenanciesController::class, 'update'], $tenancy->id) }}"
+              class="mt-3 w-25" method="POST">
             @csrf
             @method('PATCH')
             <select class="form-select" aria-label="Default select example" name="tenant">

@@ -26,7 +26,7 @@ class Property extends Model
 
     public function tenants()
     {
-        return $this->belongsToMany(Tenant::class)->withPivot('tenancies');
+        return $this->belongsToMany(Tenant::class, 'tenancies');
     }
 
     public function tenancies()

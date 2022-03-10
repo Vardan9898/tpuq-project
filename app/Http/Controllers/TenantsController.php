@@ -9,8 +9,9 @@ class TenantsController extends Controller
     public function index()
     {
         $tenants = Tenant::latest()->paginate(6)->withQueryString();
+
         return view('tenants.index', [
-            'tenants' => $tenants
+            'tenants' => $tenants,
         ]);
     }
 
@@ -46,7 +47,7 @@ class TenantsController extends Controller
     public function update(Tenant $tenant)
     {
         $attributes = request()->validate([
-            'name' => 'required|string|max:255',
+            'name'    => 'required|string|max:255',
             'image'   => 'image|max:10240',
             'address' => 'required|string|max:255',
         ]);

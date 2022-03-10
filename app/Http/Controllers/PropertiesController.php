@@ -52,7 +52,6 @@ class PropertiesController extends Controller
     {
         return view('properties.edit', [
             'property' => $property,
-            dd($property->tenants)
         ]);
     }
 

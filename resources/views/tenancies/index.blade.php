@@ -9,7 +9,7 @@
                             <div class="card-image">
                                 <img src="{{ asset($tenancy->property->image_url) }}" alt="image"/>
                             </div>
-                            @if(!$tenancy->property->mortgage_status == null)
+                            @if($tenancy->property->mortgage_status)
                                 <p class="card-action"><i class="fa fa-heart">Mortgaged</i></p>
                             @endif
                             <div class="card-heading">
@@ -28,14 +28,17 @@
                                 <p>Tenant: {{ $tenancy->tenant->name }}</p>
                             </div>
                             <div class="d-flex">
-                                <a href="{{ action([\App\Http\Controllers\TenanciesController::class, 'edit'], $tenancy->id) }}" class="card-button-edit">Edit</a>
-                                <form action="{{ action([\App\Http\Controllers\TenanciesController::class, 'destroy'], $tenancy->id) }}" class="col-6" method="POST">
+                                <a href="{{ action([\App\Http\Controllers\TenanciesController::class, 'edit'], $tenancy->id) }}"
+                                   class="card-button-edit">Edit</a>
+                                <form action="{{ action([\App\Http\Controllers\TenanciesController::class, 'destroy'], $tenancy->id) }}"
+                                      class="col-6" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="card-button-delete">Delete</button>
                                 </form>
                             </div>
-                            <a href="{{ action([\App\Http\Controllers\TenanciesController::class, 'create'], $tenancy->property->id) }}" class="card-button-make mb-5">Make
+                            <a href="{{ action([\App\Http\Controllers\TenanciesController::class, 'create'], $tenancy->property->id) }}"
+                               class="card-button-make mb-5">Make
                                 new tenancy for {{ $tenancy->property->name }}</a>
                         </div>
                     </div>
