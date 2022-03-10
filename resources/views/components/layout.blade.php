@@ -17,7 +17,7 @@
 <body>
 @auth()
     <section>
-        <nav class="navbar navbar-expand-lg navbar-scroll border-bottom border-dark" style="background-color: #FFC017">
+        <nav class="navbar navbar-expand-lg navbar-scroll border-bottom border-dark">
             <div class="container">
                 <h4>Hi {{ auth()->user()->name }}</h4>
                 <button class="navbar-toggler" type="button" data-mdb-toggle="collapse"
@@ -29,23 +29,33 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ action([\App\Http\Controllers\PropertiesController::class, 'index']) }}">View all properties</a>
+                            <a class="nav-link"
+                               href="{{ action([\App\Http\Controllers\PropertiesController::class, 'index']) }}">View
+                                all properties</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ action([\App\Http\Controllers\TenantsController::class, 'index']) }}">View all tenants</a>
+                            <a class="nav-link"
+                               href="{{ action([\App\Http\Controllers\TenantsController::class, 'index']) }}">View all
+                                tenants</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ action([\App\Http\Controllers\TenanciesController::class, 'index']) }}">View all tenancies</a>
+                            <a class="nav-link"
+                               href="{{ action([\App\Http\Controllers\TenanciesController::class, 'index']) }}">View all
+                                tenancies</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ action([\App\Http\Controllers\PropertiesController::class, 'create']) }}">Create property</a>
+                            <a class="nav-link"
+                               href="{{ action([\App\Http\Controllers\PropertiesController::class, 'create']) }}">Create
+                                property</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ action([\App\Http\Controllers\TenantsController::class, 'create']) }}">Create tenant</a>
+                            <a class="nav-link"
+                               href="{{ action([\App\Http\Controllers\TenantsController::class, 'create']) }}">Create
+                                tenant</a>
                         </li>
-
                         <li class="nav-item">
-                            <form action="{{ action([\App\Http\Controllers\SessionsController::class, 'destroy']) }}" method="POST" class="d-flex justify-content-end w-75">
+                            <form action="{{ action([\App\Http\Controllers\SessionsController::class, 'destroy']) }}"
+                                  method="POST" class="d-flex justify-content-end w-75">
                                 @csrf
                                 <div class="col-1">
                                     <button class="btn btn-danger">Logout</button>

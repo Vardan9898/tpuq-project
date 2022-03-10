@@ -20,38 +20,39 @@
             </form>
         </div>
         @if($properties->count())
-            <div class="row d-flex justify-content-center">
+            <div class="cards d-flex justify-content-center row">
                 @foreach($properties as $property)
-                    <div class="col-md-3">
-                        <div class="card-sl">
-                            <div class="card-image">
-                                <img src="{{ asset($property->image_url) }}" alt="image"/>
-                            </div>
+                    <div class="card col-3">
+                        <div class="card-header">
+                            <img src="{{ asset($property->image_url) }}"
+                                 alt="..."/>
+                        </div>
+                        <div class="card-body">
                             @if($property->mortgage_status)
-                                <p class="card-action"><i class="fa fa-heart">Mortgaged</i></p>
+                                <span class="tag tag-teal mb-2">Mortgaged</span>
                             @endif
-                            <div class="card-heading">
-                                <h3>{{ $property->name }}</h3>
-                            </div>
-                            <div class="card-text">
+                            <a class="propertyName"
+                               href="{{ action([\App\Http\Controllers\PropertiesController::class, 'show'], $property->id) }}">{{ $property->name }}</a>
+                            <div class="info">
                                 <p>Address: {{ $property->address }}</p>
-                            </div>
-                            <div class="card-text">
-                                <p class="card-title">Description: {{ $property->description }}</p>
-                            </div>
-                            <div class="card-text">
+                                <p>Description: {{ $property->description }}</p>
                                 <p>Price: ${{ $property->price }}</p>
                             </div>
-                            <div class="d-flex">
-                                <a href="{{ action([\App\Http\Controllers\PropertiesController::class, 'show'], $property->id) }}"
-                                   class="card-button"> See more</a>
+                            {{--                        <div class="user">--}}
+                            {{--                            <img--}}
+                            {{--                                src="https://yt3.ggpht.com/a/AGF-l7-0J1G0Ue0mcZMw-99kMeVuBmRxiPjyvIYONg=s900-c-k-c0xffffffff-no-rj-mo"--}}
+                            {{--                                alt="user"/>--}}
+                            {{--                            <div class="user-info">--}}
+                            {{--                                <h5>July Dec</h5>--}}
+                            {{--                                <small>2h ago</small>--}}
+                            {{--                            </div>--}}
+                            {{--                        </div>--}}
+                            <div class="buttons">
+                                <a href="{{ action([\App\Http\Controllers\TenanciesController::class, 'create'], $property->id) }}"
+                                   class="tag make tag-teal mb-2">Make tenancy</a>
                                 <a href="{{ action([\App\Http\Controllers\PropertiesController::class, 'edit'], $property->id) }}"
-                                   class="card-button-edit">Edit or
-                                    delete</a>
+                                   class="tag edit tag-teal mb-2">Edit or delete</a>
                             </div>
-                            <a href="{{ action([\App\Http\Controllers\TenanciesController::class, 'create'], $property->id) }}"
-                               class="card-button-make mb-5">Make tenancy
-                                for {{ $property->name }}</a>
                         </div>
                     </div>
                 @endforeach
