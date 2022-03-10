@@ -20,7 +20,7 @@ return new class extends Migration
             $table->text('description');
             $table->string('address');
             $table->string('image');
-            $table->float('price');
+            $table->double('price');
             $table->boolean('mortgage_status')->default(0);
             $table->timestamps();
         });

@@ -29,7 +29,7 @@ class PropertiesController extends Controller
             'address'         => 'required|string|max:255',
             'description'     => 'required|string|max:1000',
             'mortgage_status' => 'boolean',
-            'price'           => 'required|numeric|digits_between:1,255',
+            'price'           => 'required|numeric|max:999000000',
         ]);
 
         $attributes['user_id'] = auth()->id();
