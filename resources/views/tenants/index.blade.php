@@ -2,7 +2,7 @@
     <div class="row text-center d-flex justify-content-center mt-5">
         @foreach($tenants as $tenant)
             <div class="col-xl-3 col-sm-6 mb-5 mt-3">
-                <div class="bg-white rounded shadow-sm py-5 px-4"><img src="{{ asset('storage/tenants/' . $tenant->image) }}"
+                <div class="bg-white rounded shadow-sm py-5 px-4"><img src="{{ asset($tenant->image_url) }}"
                                                                        alt="" width="100"
                                                                        class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
                     <h5 class="mb-0">{{ $tenant->name }}</h5>

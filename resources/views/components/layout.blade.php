@@ -20,7 +20,6 @@
         <nav class="navbar navbar-expand-lg navbar-scroll border-bottom border-dark" style="background-color: #FFC017">
             <div class="container">
                 <h4>Hi {{ auth()->user()->name }}</h4>
-                <a class="navbar-brand" href="#!"><i class="fab fa-mdb fa-4x"></i></a>
                 <button class="navbar-toggler" type="button" data-mdb-toggle="collapse"
                         data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false"

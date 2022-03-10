@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\PropertiesController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionsController;
@@ -18,14 +19,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 //register
-Route::get('/', [RegisterController::class, 'index'])->middleware('guest')->name('home');
-Route::get('register', [RegisterController::class, 'create'])->middleware('guest');
-Route::post('register', [RegisterController::class, 'store'])->middleware('guest');
+Route::group(['middleware' => ['guest']], function () {
+    Route::get('/', [RegisterController::class, 'index'])->name('home');
+    Route::get('register', [RegisterController::class, 'create']);
+    Route::post('register', [RegisterController::class, 'store']);
+});
 
 //session
 Route::get('login', [SessionsController::class, 'create'])->middleware('guest')->name('login');
 Route::post('login', [SessionsController::class, 'store'])->middleware('guest');
 Route::post('logout', [SessionsController::class, 'destroy'])->middleware('auth');
+
+//forget password
+Route::group(['middleware' => ['guest']], function () {
+    Route::get('forgot-password', [ForgotPasswordController::class, 'index']);
+    Route::get('reset-password-link', [ForgotPasswordController::class, 'aaa']);
+    Route::post('forgot-password', [ForgotPasswordController::class, 'store']);
+    Route::get('/reset-password/{token}', [ForgotPasswordController::class, 'reset'])->name('password.reset');
+});
 
 //properties
 Route::group(['middleware' => ['auth']], function () {

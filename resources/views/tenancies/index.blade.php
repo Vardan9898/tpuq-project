@@ -7,7 +7,7 @@
                     <div class="col-md-3">
                         <div class="card-sl">
                             <div class="card-image">
-                                <img src="{{ asset('storage/prop_img/' . $tenancy->property->image) }}" alt="image"/>
+                                <img src="{{ asset($tenancy->property->image_url) }}" alt="image"/>
                             </div>
                             @if(!$tenancy->property->mortgage_status == null)
                                 <p class="card-action"><i class="fa fa-heart">Mortgaged</i></p>

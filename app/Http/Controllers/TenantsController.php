@@ -8,8 +8,9 @@ class TenantsController extends Controller
 {
     public function index()
     {
+        $tenants = Tenant::latest()->paginate(6)->withQueryString();
         return view('tenants.index', [
-            'tenants' => Tenant::latest()->paginate(6)->withQueryString(),
+            'tenants' => $tenants
         ]);
     }
 

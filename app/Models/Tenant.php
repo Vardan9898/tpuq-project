@@ -20,4 +20,9 @@ class Tenant extends Model
     {
         return $this->hasMany(Tenancy::class);
     }
+
+    public function getImageUrlAttribute()
+    {
+        return "storage/tenants/$this->image";
+    }
 }
