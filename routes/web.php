@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\PropertiesController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionsController;
