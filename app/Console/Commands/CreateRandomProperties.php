@@ -40,5 +40,7 @@ class CreateRandomProperties extends Command
     public function handle(Property $property)
     {
         $property::factory()->count($this->argument('count'))->create();
+
+        $this->info('Properties created');
     }
 }

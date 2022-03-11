@@ -29,5 +29,7 @@ class CreateRandomTenants extends Command
     public function handle(Tenant $tenant)
     {
         $tenant::factory()->count($this->argument('count'))->create();
+
+        $this->info('Tenants created');
     }
 }
