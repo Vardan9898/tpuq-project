@@ -18,3 +18,5 @@ public/js
 .DS_Store
 composer.lock
 package-lock.json
+storage/debugbar/
+public/mix-manifest.json

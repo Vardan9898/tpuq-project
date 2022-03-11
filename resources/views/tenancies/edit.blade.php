@@ -4,7 +4,7 @@
     </div>
     <div class="mt-5 d-flex flex-column align-items-center">
         <div class="row d-flex justify-content-center w-25 mb-3">
-            <img src="{{ asset('storage/') . '/' . $tenancy->property->image}}" alt="">
+            <img src="{{ asset(asset($tenancy->property->image_url)) }}" alt="">
         </div>
         <div class="row d-flex justify-content-center mb-3">
             <h3>Property name: {{ $tenancy->property->name }}</h3>

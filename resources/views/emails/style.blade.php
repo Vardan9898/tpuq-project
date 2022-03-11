@@ -6,9 +6,9 @@
 .full{
     position: relative;
 }
-.full:after{
+.full:before{
     width: 100%;
-    height:;
+    height: 90%;
     content: "";
     border-bottom: 2px dotted;
     position: absolute;
