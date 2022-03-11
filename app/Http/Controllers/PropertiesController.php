@@ -33,7 +33,7 @@ class PropertiesController extends Controller
         ]);
 
         $attributes['user_id'] = auth()->id();
-        $request->file('image')->store('/public/prop_img');
+        $request->file('image')->store('/public/properties');
         $attributes['image'] = $request->file('image')->hashName();
 
         Property::create($attributes);
@@ -74,7 +74,7 @@ class PropertiesController extends Controller
         ];
 
         if ($request->has('image')) {
-            $request->file('image')->store('/public/prop_img');
+            $request->file('image')->store('/public/properties');
             $attributes['image'] = $request->file('image')->hashName();
         }
 

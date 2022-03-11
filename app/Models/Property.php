@@ -36,6 +36,6 @@ class Property extends Model
 
     public function getImageUrlAttribute()
     {
-        return "storage/prop_img/$this->image";
+        return "storage/properties/$this->image";
     }
 }

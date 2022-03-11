@@ -1,45 +1,45 @@
 <x-layout>
-    <link rel="stylesheet" href="{{ asset('css/style-for-tenancies-index.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style-for-properties-index.css') }}">
     <main>
         @if($tenancies->count())
-            <div class="row d-flex justify-content-center">
+            <div class="cards d-flex justify-content-center row">
                 @foreach($tenancies as $tenancy)
-                    <div class="col-md-3">
-                        <div class="card-sl">
-                            <div class="card-image">
-                                <img src="{{ asset($tenancy->property->image_url) }}" alt="image"/>
-                            </div>
+                    <div class="card col-3">
+                        <div class="card-header">
+                            <img src="{{ asset($tenancy->property->image_url) }}"
+                                 alt="..."/>
+                        </div>
+                        <div class="card-body">
                             @if($tenancy->property->mortgage_status)
-                                <p class="card-action"><i class="fa fa-heart">Mortgaged</i></p>
+                                <span class="tag tag-teal mb-2">Mortgaged</span>
                             @endif
-                            <div class="card-heading">
-                                <h3>{{ $tenancy->property->name }}</h3>
-                            </div>
-                            <div class="card-text">
+                            <a class="propertyName"
+                               href="{{ action([\App\Http\Controllers\PropertiesController::class, 'show'], $tenancy->property->id) }}">{{ $tenancy->property->name }}</a>
+                            <div class="info">
                                 <p>Address: {{ $tenancy->property->address }}</p>
-                            </div>
-                            <div class="card-text">
-                                <p class="card-title">Description: {{ $tenancy->property->description }}</p>
-                            </div>
-                            <div class="card-text">
+                                <p>Description: {{ $tenancy->property->description }}</p>
                                 <p>Price: ${{ $tenancy->property->price }}</p>
                             </div>
-                            <div class="card-text">
-                                <p>Tenant: {{ $tenancy->tenant->name }}</p>
+                            <div class="user mb-3">
+                                <img
+                                        src="{{ asset($tenancy->tenant->image_url) }}"
+                                        alt="user"/>
+                                <div class="user-info mt-2">
+                                    <p>{{ $tenancy->tenant->name }}</p>
+                                </div>
                             </div>
-                            <div class="d-flex">
+                            <div class="buttons">
+                                <a href="{{ action([\App\Http\Controllers\TenanciesController::class, 'create'], $tenancy->property->id) }}"
+                                   class="tag make tag-teal mb-2">Make tenancy</a>
                                 <a href="{{ action([\App\Http\Controllers\TenanciesController::class, 'edit'], $tenancy->id) }}"
-                                   class="card-button-edit">Edit</a>
+                                   class="tag edit tag-teal mb-2">Edit</a>
                                 <form action="{{ action([\App\Http\Controllers\TenanciesController::class, 'destroy'], $tenancy->id) }}"
-                                      class="col-6" method="POST">
+                                      method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="card-button-delete">Delete</button>
+                                    <button type="submit" class="tag delete tag-teal mb-2">Delete</button>
                                 </form>
                             </div>
-                            <a href="{{ action([\App\Http\Controllers\TenanciesController::class, 'create'], $tenancy->property->id) }}"
-                               class="card-button-make mb-5">Make
-                                new tenancy for {{ $tenancy->property->name }}</a>
                         </div>
                     </div>
                 @endforeach

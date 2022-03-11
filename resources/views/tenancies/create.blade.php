@@ -4,7 +4,7 @@
     </div>
     <div class="mt-5 d-flex flex-column align-items-center">
         <div class="row d-flex justify-content-center w-25 mb-3">
-            <img src="{{ asset('storage/') . '/' . $property->image}}" alt="">
+            <img src="{{ asset($property->image_url)}}" alt="">
         </div>
         <div class="row d-flex justify-content-center mb-3">
             <h3>Property name: {{ $property->name }}</h3>
@@ -22,7 +22,8 @@
                 Mortgaged status
             </label>
         </div>
-        <form action="{{ action([\App\Http\Controllers\TenanciesController::class, 'store'], $property->id) }}" class="mt-3 w-25" method="POST">
+        <form action="{{ action([\App\Http\Controllers\TenanciesController::class, 'store'], $property->id) }}"
+              class="mt-3 w-25" method="POST">
             @csrf
             <select class="form-select" name="tenant_id">
                 <option selected>Select the tenant</option>
