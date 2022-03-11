@@ -25,7 +25,7 @@
                                         src="{{ asset($tenancy->tenant->image_url) }}"
                                         alt="user"/>
                                 <div class="user-info mt-2">
-                                    <p>{{ $tenancy->tenant->name }}</p>
+                                    <p>Tenant: {{ $tenancy->tenant->name }}</p>
                                 </div>
                             </div>
                             <div class="buttons">
