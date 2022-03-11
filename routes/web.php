@@ -30,14 +30,6 @@ Route::get('login', [SessionsController::class, 'create'])->middleware('guest')-
 Route::post('login', [SessionsController::class, 'store'])->middleware('guest');
 Route::post('logout', [SessionsController::class, 'destroy'])->middleware('auth');
 
-//forget password
-Route::group(['middleware' => ['guest']], function () {
-    Route::get('forgot-password', [ForgotPasswordController::class, 'index']);
-    Route::get('reset-password-link', [ForgotPasswordController::class, 'aaa']);
-    Route::post('forgot-password', [ForgotPasswordController::class, 'store']);
-    Route::get('/reset-password/{token}', [ForgotPasswordController::class, 'reset'])->name('password.reset');
-});
-
 //properties
 Route::group(['middleware' => ['auth']], function () {
     Route::get('properties/create', [PropertiesController::class, 'create']);

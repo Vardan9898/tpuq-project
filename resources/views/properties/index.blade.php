@@ -10,15 +10,6 @@
         </div>
     @endguest
     <main>
-        <div class="col-12 d-flex justify-content-end mb-5">
-            <form class="search-container d-flex justify-content-end" method="GET"
-                  action="{{ action([\App\Http\Controllers\PropertiesController::class, 'index']) }}">
-                <input type="text" name="search" placeholder="Search..." class="search-input">
-                <a href="#" class="search-btn">
-                    <i class="fas fa-search"></i>
-                </a>
-            </form>
-        </div>
         @if($properties->count())
             <div class="cards d-flex justify-content-center row">
                 @foreach($properties as $property)

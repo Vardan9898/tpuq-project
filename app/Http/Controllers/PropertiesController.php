@@ -9,7 +9,7 @@ class PropertiesController extends Controller
 {
     public function index()
     {
-        $properties = Property::latest()->filter(request(['search']))->paginate(7)->withQueryString();
+        $properties = Property::latest()->paginate(7)->withQueryString();
 
         return view('properties.index', [
             'properties' => $properties,

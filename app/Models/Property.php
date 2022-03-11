@@ -34,16 +34,6 @@ class Property extends Model
         return $this->hasMany(Tenancy::class);
     }
 
-    public function scopeFilter($query, array $filters)
-    {
-        $query->when($filters['search'] ?? false, function ($query, $search) {
-            $query
-                ->where('name', 'like', '%' . $search . '%')
-                ->orWhere('description', 'like', '%' . $search . '%')
-                ->orWhere('address', 'like', '%' . $search . '%');
-        });
-    }
-
     public function getImageUrlAttribute()
     {
         return "storage/prop_img/$this->image";
