@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('name');
             $table->text('description');
             $table->string('address');
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->double('price');
             $table->boolean('mortgage_status')->default(0);
             $table->timestamps();
