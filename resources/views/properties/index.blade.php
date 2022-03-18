@@ -1,5 +1,4 @@
 <x-layout>
-    <link rel="stylesheet" href="{{ asset('css/style-for-properties-index.css') }}">
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
     @guest()
@@ -11,29 +10,34 @@
     @endguest
     <main>
         @if($properties->count())
-            <div class="cards d-flex justify-content-center row">
+            <div class="cards d-flex justify-content-center row pt-4 mt-5">
                 @foreach($properties as $property)
-                    <div class="card col-3">
-                        <div class="card-header">
-                            <img src="{{ asset($property->image_url) }}"
-                                 alt="..."/>
-                        </div>
-                        <div class="card-body">
-                            @if($property->mortgage_status)
-                                <span class="tag tag-teal mb-2">Mortgaged</span>
-                            @endif
-                            <a class="propertyName"
-                               href="{{ action([\App\Http\Controllers\PropertiesController::class, 'show'], $property->id) }}">{{ $property->name }}</a>
-                            <div class="info">
-                                <p>Address: {{ $property->address }}</p>
-                                <p>Description: {{ $property->description }}</p>
-                                <p>Price: ${{ $property->price }}</p>
+                    <div class="col-4 p-2">
+                        <div class="card">
+                            <div class="propertyImage">
+                                <img class="card-img-top" src="{{ asset($property->image_url) }}"
+                                     alt="Image placeholder">
                             </div>
-                            <div class="buttons">
-                                <a href="{{ action([\App\Http\Controllers\TenanciesController::class, 'create'], $property->id) }}"
-                                   class="tag make tag-teal mb-2">Make tenancy</a>
-                                <a href="{{ action([\App\Http\Controllers\PropertiesController::class, 'edit'], $property->id) }}"
-                                   class="tag edit tag-teal mb-2">Edit or delete</a>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item"><h3 class="m-0"><a
+                                                href="{{ action([\App\Http\Controllers\PropertiesController::class, 'show'], $property->id) }}">{{ $property->name }}</a>
+                                    </h3></li>
+                                <li class="list-group-item address"><p class="m-0">{{ $property->address }}</p></li>
+                                <li class="list-group-item position-relative"><p class="m-0">${{ $property->price }}</p>
+                                    @if($property->mortgage_status)
+                                        <div class="col-auto position-absolute right-0">
+                                            <span class="badge badge-lg badge-danger">Mortgaged</span>
+                                        </div>
+                                    @endif
+                                </li>
+                            </ul>
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    <a href="{{ action([\App\Http\Controllers\TenanciesController::class, 'create'], $property->id) }}"
+                                       class="btn btn-success">Make tenancy</a>
+                                    <a href="{{ action([\App\Http\Controllers\PropertiesController::class, 'edit'], $property->id) }}"
+                                       class="btn btn-outline-primary">Edit</a>
+                                </div>
                             </div>
                         </div>
                     </div>
