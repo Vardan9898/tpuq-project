@@ -20,7 +20,7 @@
                             </div>
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item"><h3 class="m-0"><a
-                                                href="{{ action([\App\Http\Controllers\PropertiesController::class, 'show'], $property->id) }}">{{ $property->name }}</a>
+                                            href="{{ action([\App\Http\Controllers\PropertiesController::class, 'show'], $property->id) }}">{{ $property->name }}</a>
                                     </h3></li>
                                 <li class="list-group-item address"><p class="m-0">{{ $property->address }}</p></li>
                                 <li class="list-group-item position-relative"><p class="m-0">${{ $property->price }}</p>
