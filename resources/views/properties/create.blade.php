@@ -44,7 +44,8 @@
                     </div>
                     @include('error')
                     <button type="submit" class="btn btn-success mt-4">Create</button>
-                    <a href="{{ action([\App\Http\Controllers\PropertiesController::class, 'index']) }}" class="btn btn-secondary bg-gradient-gray border-0 text-white mt-4">Cancel</a>
+                    <a href="{{ url()->previous() }}"
+                       class="btn btn-secondary bg-gradient-gray border-0 text-white mt-4">Back</a>
                 </div>
             </form>
         </div>

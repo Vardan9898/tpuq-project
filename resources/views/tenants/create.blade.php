@@ -27,8 +27,8 @@
                     </div>
                     @include('error')
                     <button type="submit" class="btn btn-success mt-5">Create</button>
-                    <a href="{{ action([\App\Http\Controllers\TenantsController::class, 'index']) }}"
-                       class="btn btn-secondary bg-gradient-gray border-0 text-white mt-5">Cancel</a>
+                    <a href="{{ url()->previous() }}"
+                       class="btn btn-secondary bg-gradient-gray border-0 text-white mt-5">Back</a>
                 </div>
             </form>
         </div>

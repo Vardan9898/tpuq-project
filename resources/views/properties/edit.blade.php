@@ -40,13 +40,14 @@
                     </div>
                     <div class="custom-control custom-checkbox mt-3">
                         <input class="custom-control-input" id="customCheck1" type="checkbox" name="mortgage_status"
-                                {{ $property->mortgage_status ? 'checked' : '' }}>
+                            {{ $property->mortgage_status ? 'checked' : '' }}>
                         <label class="custom-control-label" for="customCheck1">If your property is mortgaged please
                             check this input</label>
                     </div>
                     @include('error')
                     <button type="submit" class="btn btn-primary mt-5">Update</button>
-                    <a href="{{ action([\App\Http\Controllers\PropertiesController::class, 'index']) }}" class="btn btn-secondary bg-gradient-gray border-0 text-white mt-5">Cancel</a>
+                    <a href="{{ url()->previous() }}"
+                       class="btn btn-secondary bg-gradient-gray border-0 text-white mt-5">Back</a>
                 </div>
             </form>
             <form action="{{ action([\App\Http\Controllers\PropertiesController::class, 'destroy'], $property->id) }}"
@@ -54,7 +55,8 @@
                 @csrf
                 @method('DELETE')
 
-                <div class="tooltip1"><button type="submit" class="border-0 delete-btn"><i class="fas fa-trash"></i></button>
+                <div class="tooltip1">
+                    <button type="submit" class="border-0 delete-btn"><i class="fas fa-trash"></i></button>
                     <span class="tooltiptext">Delete</span>
                 </div>
             </form>
