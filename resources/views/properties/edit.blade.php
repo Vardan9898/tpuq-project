@@ -5,7 +5,7 @@
                   method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PATCH')
-                <img class="card-img-top" src="{{ asset($property->image_url) }}" alt="...">
+                <img class="card-img-top imgForEdit" src="{{ asset($property->image_url) }}" alt="...">
                 <div class="card-body">
                     <div class="input-group input-group-merge">
                         <div class="input-group-prepend">
@@ -40,7 +40,7 @@
                     </div>
                     <div class="custom-control custom-checkbox mt-3">
                         <input class="custom-control-input" id="customCheck1" type="checkbox" name="mortgage_status"
-                            {{ $property->mortgage_status ? 'checked' : '' }}>
+                                {{ $property->mortgage_status ? 'checked' : '' }}>
                         <label class="custom-control-label" for="customCheck1">If your property is mortgaged please
                             check this input</label>
                     </div>
@@ -51,11 +51,10 @@
                 </div>
             </form>
             <form action="{{ action([\App\Http\Controllers\PropertiesController::class, 'destroy'], $property->id) }}"
-                  class="mt-2 position-absolute delete-button" method="POST">
+                  class="mt-2 position-relative delete-button" method="POST">
                 @csrf
                 @method('DELETE')
-
-                <div class="tooltip1">
+                <div class="tooltip1 edit-tooltip position-absolute">
                     <button type="submit" class="border-0 delete-btn"><i class="fas fa-trash"></i></button>
                     <span class="tooltiptext">Delete</span>
                 </div>

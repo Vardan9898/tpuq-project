@@ -1,39 +1,48 @@
 <x-layout>
-    <div class="d-flex justify-content-center mt-4">
-        <h3>Here you can create tenancy</h3>
-    </div>
-    <div class="mt-5 d-flex flex-column align-items-center">
-        <div class="row d-flex justify-content-center w-25 mb-3">
-            <img src="{{ asset($property->image_url)}}" alt="">
-        </div>
-        <div class="row d-flex justify-content-center mb-3">
-            <h3>Property name: {{ $property->name }}</h3>
-        </div>
-        <div class="row d-flex justify-content-center mb-3">
-            <h3>Property address: {{ $property->address }}</h3>
-        </div>
-        <div class="row d-flex justify-content-center mb-3">
-            <h3>Property price: ${{ $property->price }}</h3>
-        </div>
-        <div class="form-check">
-            <input class="form-check-input" type="radio" name="flexRadioDisabled" id="flexRadioDisabled"
-                   disabled {{ $property->mortgage_status ? 'checked' : '' }}>
-            <label class="form-check-label" for="flexRadioDisabled">
-                Mortgaged status
-            </label>
-        </div>
-        <form action="{{ action([\App\Http\Controllers\TenanciesController::class, 'store'], $property->id) }}"
-              class="mt-3 w-25" method="POST">
-            @csrf
-            <select class="form-select" name="tenant_id">
-                <option selected>Select the tenant</option>
-                @foreach($tenants as $tenant)
-                    <option value="{{ $tenant->id }}">{{ $tenant->name }}</option>
-                @endforeach
-            </select>
-            <div class="d-flex justify-content-center">
-                <button class="btn btn-success mt-4">Create tenancy</button>
+    <div class="row text-center d-flex justify-content-center mt-5 mb-2">
+        <div class="card card-profile tenants col-6 m-3 p-0">
+            <img src="{{ asset($property->image_url) }}" alt="Image placeholder"
+                 class="card-img-top w-100 h-auto">
+            <div class="card-body p-0">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item d-flex">
+                        <a class="btn btn-sm bg-gray mr-4 d-flex align-items-center text-white"
+                           href="{{ url()->previous() }}">Back</a>
+                        <h3 class="m-0 w-75">
+                            <a
+                                    href="{{ action([\App\Http\Controllers\PropertiesController::class, 'show'], $property->id) }}">
+                                {{ $property->name }}
+                            </a>
+                        </h3>
+                    </li>
+                    <li class="list-group-item d-flex align-items-center">
+                        <i class="ni ni-pin-3 mr-3"></i>
+                        <p class="m-0 text-sm-left">{{ $property->address }}</p>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-center"><p class="m-0">
+                            ${{ $property->price }}</p>
+                        @if($property->mortgage_status)
+                            <div class="col-auto">
+                                <span class="badge badge-lg badge-danger">Mortgaged</span>
+                            </div>
+                        @endif
+                    </li>
+                    <li class="list-group-item address d-flex justify-content-center align-items-center">
+                        <form action="{{ action([\App\Http\Controllers\TenanciesController::class, 'store'], $property->id) }}"
+                              class="d-flex justify-content-around w-75" method="POST">
+                            @csrf
+                            <select class="form-control mr-3" name="tenant_id">
+                                @foreach($tenants as $tenant)
+                                    <option value="{{ $tenant->id }}">{{ $tenant->name }}</option>
+                                @endforeach
+                            </select>
+                            <div class="d-flex justify-content-center">
+                                <button class="btn btn-success">Create</button>
+                            </div>
+                        </form>
+                    </li>
+                </ul>
             </div>
-        </form>
+        </div>
     </div>
 </x-layout>

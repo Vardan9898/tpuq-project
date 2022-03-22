@@ -114,7 +114,6 @@ var Layout = (function() {
         }
     })
 
-
     // Add sidenav modifier classes on mouse events
 
     $('.sidenav').on('mouseenter', function() {

@@ -25,11 +25,14 @@ class RegisterController extends Controller
             'password' => 'required|string|max:255|min:6',
             'image'    => 'required|image|max:10240',
         ]);
-        $attributes['image'] = request()->file('image')->store('public/images');
+
+        request()->file('image')->store('public/users');
+        $attributes['image'] = request()->file('image')->hashName();
 
         $user = User::create($attributes);
         auth()->login($user);
 
-        return redirect()->action([PropertiesController::class, 'index'])->with('success', 'Your account has been created.');
+        return redirect()->action([PropertiesController::class, 'index'])->with('success',
+            'Your account has been created.');
     }
 }

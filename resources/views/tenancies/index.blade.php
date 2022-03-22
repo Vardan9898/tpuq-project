@@ -17,10 +17,10 @@
                         <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
                             <div class="d-flex justify-content-between">
                                 <a href="{{ action([\App\Http\Controllers\TenanciesController::class, 'edit'], $tenancy->id) }}"
-                                   class="btn btn-sm btn-info mr-4">Edit</a>
+                                   class="btn btn-sm btn-info mr-4 d-flex align-items-center">Edit</a>
                                 <form
-                                    action="{{ action([\App\Http\Controllers\TenanciesController::class, 'destroy'], $tenancy->id) }}"
-                                    class="delete-button" method="POST">
+                                        action="{{ action([\App\Http\Controllers\TenanciesController::class, 'destroy'], $tenancy->id) }}"
+                                        class="delete-button d-flex align-items-center" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <div class="tooltip1">
@@ -34,11 +34,11 @@
                         <div class="card-body p-0">
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item"><h3 class="m-0"><a
-                                            href="{{ action([\App\Http\Controllers\PropertiesController::class, 'show'], $tenancy->property->id) }}">{{ $tenancy->property->name }}</a>
+                                                href="{{ action([\App\Http\Controllers\PropertiesController::class, 'show'], $tenancy->property->id) }}">{{ $tenancy->property->name }}</a>
                                     </h3></li>
-                                <li class="list-group-item address d-flex justify-content-center align-items-center">
+                                <li class="list-group-item address d-flex justify-content-center align-items-center address-li">
                                     <i class="ni ni-pin-3 mr-2"></i>
-                                    <p class="m-0">{{ $tenancy->property->address }}</p>
+                                    <p class="m-0 address-p">{{ $tenancy->property->address }}</p>
                                 </li>
                                 <li class="list-group-item d-flex justify-content-center"><p class="m-0">
                                         ${{ $tenancy->property->price }}</p>

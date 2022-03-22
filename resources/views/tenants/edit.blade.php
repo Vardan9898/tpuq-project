@@ -1,6 +1,6 @@
 <x-layout>
     <div class="cards d-flex justify-content-center row mt-5">
-        <div class="card position-relative">
+        <div class="card position-relative mt-5">
             <form action="{{ action([\App\Http\Controllers\TenantsController::class, 'update'], $tenant->id) }}"
                   method="POST" enctype="multipart/form-data">
                 @csrf
@@ -34,10 +34,10 @@
                 </div>
             </form>
             <form action="{{ action([\App\Http\Controllers\TenantsController::class, 'destroy'], $tenant->id) }}"
-                  class="mt-2 position-absolute delete-button" method="POST">
+                  class="mt-2 position-relative delete-button" method="POST">
                 @csrf
                 @method('DELETE')
-                <div class="tooltip1">
+                <div class="tooltip1 position-absolute edit-tooltip">
                     <button type="submit" class="border-0 delete-btn"><i class="fas fa-trash"></i></button>
                     <span class="tooltiptext">Delete</span>
                 </div>

@@ -1,25 +1,31 @@
 <x-layout>
-    <section>
-        <div class="col-6 mt-5 m-auto d-flex justify-content-center">
-            <h2>Log In! or <a class="btn btn-success"
-                              href="{{ action([\App\Http\Controllers\RegisterController::class, 'create']) }}">Register</a>
-            </h2>
-        </div>
-        <form action="{{ action([\App\Http\Controllers\SessionsController::class, 'store']) }}" method="POST"
-              class="col-4 m-auto mt-5">
+    <x-guest>
+        <form action="{{ action([\App\Http\Controllers\SessionsController::class, 'store']) }}"
+              method="POST">
             @csrf
-            <div class="mb-3">
-                <label class="form-label">Email address</label>
-                <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}">
+            <div class="form-group mb-3">
+                <div class="input-group input-group-merge input-group-alternative">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                    </div>
+                    <input placeholder="Email" type="email" class="form-control" id="email"
+                           name="email" value="{{ old('email') }}">
+                </div>
             </div>
-            <div>
-                <label class="form-label">Password</label>
-                <input type="password" class="form-control" id="password" name="password">
+            <div class="form-group">
+                <div class="input-group input-group-merge input-group-alternative">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i
+                                    class="ni ni-lock-circle-open"></i></span>
+                    </div>
+                    <input type="password" class="form-control" id="password" name="password"
+                           placeholder="Password">
+                </div>
             </div>
             @include('error')
-            <div class="mt-4">
-                <button type="submit" class="btn btn-primary">Login</button>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary my-4">Sign in</button>
             </div>
         </form>
-    </section>
+    </x-guest>
 </x-layout>

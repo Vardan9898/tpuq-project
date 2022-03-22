@@ -1,8 +1,8 @@
 <x-layout>
     <div class="row text-center d-flex justify-content-between mt-5 mb-2">
         @foreach($tenants as $tenant)
-            <div class="card card-profile tenants col-lg-3 m-3">
-                <img src="{{ asset('/storage/default_images/img-1-1000x600.jpg') }}" alt="Image placeholder"
+            <div class="card card-profile tenants col-lg-3 m-3 p-0">
+                <img src="{{ asset('/img/default_images/img-1-1000x600.jpg') }}" alt="Image placeholder"
                      class="card-img-top w-100">
                 <div class="row justify-content-center">
                     <div class="col-lg-3 order-lg-2">
@@ -38,9 +38,9 @@
                     </div>
                     <div class="text-center">
                         <h5 class="h3">{{ $tenant->name }}</h5>
-                        <div class="address1 d-flex align-items-center justify-content-center">
+                        <div class="address-li d-flex align-items-center justify-content-center mb-3">
                             <i class="ni ni-pin-3 mr-2"></i>
-                            <p class="h5 font-weight-300">{{ $tenant->address }}</p>
+                            <p class="h5 font-weight-300 address-p m-0">{{ $tenant->address }}</p>
                         </div>
                     </div>
                 </div>
