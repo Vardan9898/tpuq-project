@@ -17,11 +17,10 @@
 */
 
 
-
 //
 // Layout
 //
-
+var Cookies = require('js-cookie');
 'use strict';
 
 var Layout = (function() {
@@ -32,8 +31,7 @@ var Layout = (function() {
         $('body').append('<div class="backdrop d-xl-none" data-action="sidenav-unpin" data-target='+$('#sidenav-main').data('target')+' />');
 
         // Store the sidenav state in a cookie session
-        // Cookies.set('sidenav-state', 'pinned');
-		document.cookie = 'sidenav-state', 'pinned';
+		Cookies.set('sidenav-state', 'pinned');
     }
 
     function unpinSidenav() {
@@ -44,22 +42,25 @@ var Layout = (function() {
 
         // Store the sidenav state in a cookie session
         // Cookies.set('sidenav-state', 'unpinned');
-		document.cookie = 'sidenav-state', 'unpinned';
+		Cookies.set('sidenav-state', 'unpinned');
     }
 
     // Set sidenav state from cookie
 
-    // var $sidenavState = Cookies.get('sidenav-state') ? Cookies.get('sidenav-state') : 'pinned';
+    var $sidenavState = Cookies.get('sidenav-state') ? Cookies.get('sidenav-state') : 'pinned';
 
-    // if($(window).width() > 1200) {
-    //     if($sidenavState == 'pinned') {
-    //         pinSidenav()
-    //     }
-	//
-    //     if(Cookies.get('sidenav-state') == 'unpinned') {
-    //         unpinSidenav()
-    //     }
-    // }
+    if($(window).width() > 1200) {
+        if($sidenavState == 'pinned') {
+            pinSidenav()
+			// if (Cookies.get('sidenav-state', 'pinned') && Cookies.get('sidenav-menu', 'pinned')) {
+			// 	$('.collapse').addClass('')
+			// }
+        }
+
+        if(Cookies.get('sidenav-state') == 'unpinned') {
+            unpinSidenav()
+        }
+    }
 
     $("body").on("click", "[data-action]", function(e) {
 
@@ -140,7 +141,6 @@ var Layout = (function() {
             $('#footer-main').addClass('footer-auto-bottom')
         }
     })
-
 })();
 
 
@@ -537,6 +537,18 @@ var Navbar = (function() {
 			closeDropdown($(this));
 		}
 	})
+
+	var $sidenavStateMenu = Cookies.get('sidenav-state-menu') ? Cookies.get('sidenav-state-menu') : 'pinned';
+
+	if($(window).width() > 1200) {
+		if($sidenavStateMenu == 'pinned') {
+			accordion($(this))
+		}
+
+		if(Cookies.get('sidenav-state-menu') == 'unpinned') {
+			closeDropdown($(this))
+		}
+	}
 
 })();
 
