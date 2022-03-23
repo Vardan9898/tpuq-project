@@ -26,13 +26,15 @@ class ForgotPasswordController extends Controller
 
         $token = Str::random(64);
 
+        $user = User::where('email', $request->email)->first();
+
         DB::table('password_resets')->insert([
             'email'      => $request->email,
             'token'      => $token,
             'created_at' => Carbon::now(),
         ]);
 
-        Mail::to($request->email)->send(new ResetPassword($token));
+        Mail::to($request->email)->send(new ResetPassword($token, $user));
 
         return redirect()->action([SessionsController::class, 'create'])->with('success',
             'Please check your email address!');
