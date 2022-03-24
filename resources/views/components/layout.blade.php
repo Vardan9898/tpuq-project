@@ -76,7 +76,7 @@
                                 </ul>
                             </div>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item {{ active_route('tenancies') }}">
                             <a class="nav-link"
                                href="{{ action([\App\Http\Controllers\TenanciesController::class, 'index']) }}">
                                 <i class="ni ni-badge text-green"></i>
