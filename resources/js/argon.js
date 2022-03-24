@@ -41,7 +41,6 @@ var Layout = (function() {
         $('body').find('.backdrop').remove();
 
         // Store the sidenav state in a cookie session
-        // Cookies.set('sidenav-state', 'unpinned');
 		Cookies.set('sidenav-state', 'unpinned');
     }
 
@@ -52,9 +51,6 @@ var Layout = (function() {
     if($(window).width() > 1200) {
         if($sidenavState == 'pinned') {
             pinSidenav()
-			// if (Cookies.get('sidenav-state', 'pinned') && Cookies.get('sidenav-menu', 'pinned')) {
-			// 	$('.collapse').addClass('')
-			// }
         }
 
         if(Cookies.get('sidenav-state') == 'unpinned') {
@@ -529,6 +525,7 @@ var Navbar = (function() {
 	$collapse.on({
 		'show.bs.collapse': function() {
 			accordion($(this));
+			Cookies.set('dropdown-menu', 'pinned');
 		}
 	})
 
@@ -538,16 +535,22 @@ var Navbar = (function() {
 		}
 	})
 
-	var $sidenavStateMenu = Cookies.get('sidenav-state-menu') ? Cookies.get('sidenav-state-menu') : 'pinned';
+	var $sidenavDropdown = Cookies.get('dropdown-menu');
 
-	if($(window).width() > 1200) {
-		if($sidenavStateMenu == 'pinned') {
-			accordion($(this))
-		}
+	switch ($sidenavDropdown) {
+		case 'pinned':
 
-		if(Cookies.get('sidenav-state-menu') == 'unpinned') {
-			closeDropdown($(this))
-		}
+
+			break;
+
+		case 'unpinned':
+			console.log('unpinned')
+			break;
+	}
+
+
+	if (Cookies.get('dropdown-menu') == 'unpinned') {
+		closeDropdown($(this))
 	}
 
 })();
@@ -591,7 +594,6 @@ var NavbarCollapse = (function() {
 			}
 		})
 	}
-
 })();
 
 //

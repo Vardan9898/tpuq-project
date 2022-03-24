@@ -31,7 +31,7 @@
                         </div>
                         <div class="row mt-3">
                             <div class="col-6">
-                                <a href="#" class="text-light"><small>Forgot password?</small></a>
+                                <a href="{{ action([\App\Http\Controllers\ForgotPasswordController::class, 'index']) }}" class="text-light"><small>Forgot password?</small></a>
                             </div>
                         </div>
                     </div>
