@@ -19,6 +19,8 @@
             @include('error')
             <div class="mt-4">
                 <button type="submit" class="btn btn-primary">Login</button>
+                <a href="{{ action([\App\Http\Controllers\ForgotPasswordController::class, 'index']) }}"
+                   class="btn btn-secondary">Forgot password?</a>
             </div>
         </form>
     </section>
