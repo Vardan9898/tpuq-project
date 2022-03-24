@@ -44,14 +44,14 @@
                                 <i class="ni ni-building text-primary"></i>
                                 <span class="nav-link-text">Properties</span>
                             </a>
-                            <div class="collapse" id="navbar-dashboards">
+                            <div class="collapse {{ active_route('properties', 'show') }}" id="navbar-dashboards">
                                 <ul class="nav nav-sm flex-column">
-                                    <li class="nav-item">
-                                        <a href="{{ action([\App\Http\Controllers\PropertiesController::class, 'index']) }}"
+                                    <li class="nav-item {{ active_route('properties.index') }}">
+                                        <a href="{{ route('properties.index') }}"
                                            class="nav-link">View all</a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a href="{{ action([\App\Http\Controllers\PropertiesController::class, 'create']) }}"
+                                    <li class="nav-item {{ active_route('properties.create') }}">
+                                        <a href="{{ route('properties.create') }}"
                                            class="nav-link">Create</a>
                                     </li>
                                 </ul>
@@ -63,14 +63,14 @@
                                 <i class="ni ni-single-02 text-orange"></i>
                                 <span class="nav-link-text">Tenants</span>
                             </a>
-                            <div class="collapse" id="navbar-examples">
+                            <div class="collapse {{ active_route('tenants', 'show') }}" id="navbar-examples">
                                 <ul class="nav nav-sm flex-column">
-                                    <li class="nav-item">
-                                        <a href="{{ action([\App\Http\Controllers\TenantsController::class, 'index']) }}"
+                                    <li class="nav-item {{ active_route('tenants.index') }}">
+                                        <a href="{{ route('tenants.index') }}"
                                            class="nav-link">View all</a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a href="{{ action([\App\Http\Controllers\TenantsController::class, 'create']) }}"
+                                    <li class="nav-item {{ active_route('tenants.create') }}">
+                                        <a href="{{ route('tenants.create') }}"
                                            class="nav-link">Create</a>
                                     </li>
                                 </ul>

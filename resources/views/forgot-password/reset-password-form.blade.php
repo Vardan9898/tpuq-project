@@ -1,28 +1,44 @@
 <x-layout>
-    <section>
-        <div class="col-6 mt-5 m-auto d-flex justify-content-center">
-            <h3>Reset Password</h3>
-        </div>
-        <form action="{{ action([\App\Http\Controllers\ForgotPasswordController::class, 'update']) }}" method="POST"
-              class="col-4 m-auto mt-5">
-            @csrf
-            <input type="hidden" name="token" value="{{ $token }}">
-            <div class="mb-3">
-                <label class="form-label">Email address</label>
-                <input type="email" class="form-control" id="email" name="email">
-            </div>
-            <div class="mb-3">
-                <label class="form-label">New password</label>
-                <input type="password" class="form-control" id="password" name="password">
-            </div>
-            <div>
-                <label class="form-label">Confirm password</label>
-                <input type="password" class="form-control" id="password-confirm" name="password_confirmation">
-            </div>
-            @include('error')
-            <div class="mt-4">
-                <button type="submit" class="btn btn-primary">Reset Password</button>
-            </div>
-        </form>
-    </section>
+    <x-guest>
+        <section>
+            <form action="{{ action([\App\Http\Controllers\ForgotPasswordController::class, 'update']) }}"
+                  method="POST">
+                @csrf
+                <input type="hidden" name="token" value="{{ $token }}">
+                <div class="form-group mb-3">
+                    <div class="input-group input-group-merge input-group-alternative">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                        </div>
+                        <input placeholder="Email" type="email" class="form-control" id="email"
+                               name="email" value="{{ old('email') }}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group input-group-merge input-group-alternative">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i
+                                        class="ni ni-lock-circle-open"></i></span>
+                        </div>
+                        <input type="password" class="form-control" id="password" name="password"
+                               placeholder="New password">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group input-group-merge input-group-alternative">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i
+                                        class="ni ni-lock-circle-open"></i></span>
+                        </div>
+                        <input type="password" class="form-control" id="password-confirm" name="password_confirmation"
+                               placeholder="Confirm password">
+                    </div>
+                </div>
+                @include('error')
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary mt-3">Reset</button>
+                </div>
+            </form>
+        </section>
+    </x-guest>
 </x-layout>

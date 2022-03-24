@@ -525,7 +525,7 @@ var Navbar = (function() {
 	$collapse.on({
 		'show.bs.collapse': function() {
 			accordion($(this));
-			Cookies.set('dropdown-menu', 'pinned');
+			// Cookies.set('dropdown-menu', 'pinned');
 		}
 	})
 
@@ -535,23 +535,22 @@ var Navbar = (function() {
 		}
 	})
 
-	var $sidenavDropdown = Cookies.get('dropdown-menu');
+	// var $sidenavDropdown = Cookies.get('dropdown-menu');
+	//
+	// switch ($sidenavDropdown) {
+	// 	case 'pinned':
+	// 		$('.collapse').addClass('show');
+	// 		break;
+	//
+	// 	case 'unpinned':
+	// 		console.log('unpinned')
+	// 		break;
+	// }
 
-	switch ($sidenavDropdown) {
-		case 'pinned':
 
-
-			break;
-
-		case 'unpinned':
-			console.log('unpinned')
-			break;
-	}
-
-
-	if (Cookies.get('dropdown-menu') == 'unpinned') {
-		closeDropdown($(this))
-	}
+	// if (Cookies.get('dropdown-menu') == 'unpinned') {
+	// 	closeDropdown($(this))
+	// }
 
 })();
 

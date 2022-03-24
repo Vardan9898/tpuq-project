@@ -70,3 +70,7 @@
     top: 10%;
     left: 17%;
 }
+.active a {
+    color: #5e72e4;
+}
+
