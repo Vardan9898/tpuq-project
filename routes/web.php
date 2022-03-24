@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\PropertiesController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionsController;
@@ -28,6 +29,14 @@ Route::group(['middleware' => ['guest']], function () {
 Route::get('login', [SessionsController::class, 'create'])->middleware('guest')->name('login');
 Route::post('login', [SessionsController::class, 'store'])->middleware('guest');
 Route::post('logout', [SessionsController::class, 'destroy'])->middleware('auth');
+
+//forgot password
+Route::group(['middleware' => ['guest']], function () {
+    Route::get('forgot-password', [ForgotPasswordController::class, 'index']);
+    Route::post('forgot-password', [ForgotPasswordController::class, 'store']);
+    Route::get('reset-password/{token}', [ForgotPasswordController::class, 'edit']);
+    Route::post('reset-password', [ForgotPasswordController::class, 'update']);
+});
 
 //properties
 Route::group(['middleware' => ['auth']], function () {

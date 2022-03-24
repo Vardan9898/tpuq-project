@@ -23,8 +23,15 @@
                 </div>
             </div>
             @include('error')
+<<<<<<< HEAD
             <div class="text-center">
                 <button type="submit" class="btn btn-primary my-4">Sign in</button>
+=======
+            <div class="mt-4">
+                <button type="submit" class="btn btn-primary">Login</button>
+                <a href="{{ action([\App\Http\Controllers\ForgotPasswordController::class, 'index']) }}"
+                   class="btn btn-secondary">Forgot password?</a>
+>>>>>>> 8578e84b2e3ff371b442c6fe422bb51137a86a67
             </div>
         </form>
     </x-guest>

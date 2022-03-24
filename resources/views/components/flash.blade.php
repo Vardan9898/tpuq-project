@@ -6,4 +6,10 @@
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
+@elseif(session()->has('error'))
+    <div class="alert alert-danger fixed-bottom col-1 justify-content-end" role="alert">
+        <p class="d-flex justify-content-center">
+            {{ session('error') }}
+        </p>
+    </div>
 @endif
