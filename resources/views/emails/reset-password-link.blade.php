@@ -9,6 +9,6 @@ Reset password
 @component('mail::footer')
 <small>{{ config('app.name') }}</small>
 <br>
-<a href="{{ action([\App\Http\Controllers\SessionsController::class, 'create']) }}">tpuq.test</a>
+<a href="{{ action([\App\Http\Controllers\SessionsController::class, 'create']) }}">{{ strtolower(config('app.name')) }}.test</a>
 @endcomponent
 @endcomponent
