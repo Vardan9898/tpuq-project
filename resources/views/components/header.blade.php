@@ -16,11 +16,11 @@
                                         href="{{ action([\App\Http\Controllers\PropertiesController::class, 'index']) }}"><i
                                             class="fas fa-home"></i></a></li>
                             @if(str_contains(\Illuminate\Support\Facades\Route::currentRouteName(), 'index'))
-                                <li class="breadcrumb-item"><a href="#">View all</a></li>
+                                <li class="breadcrumb-item"><a>View all</a></li>
                             @elseif(str_contains(\Illuminate\Support\Facades\Route::currentRouteName(), 'create'))
-                                <li class="breadcrumb-item"><a href="#">Create</a></li>
+                                <li class="breadcrumb-item"><a>Create</a></li>
                             @elseif(str_contains(\Illuminate\Support\Facades\Route::currentRouteName(), 'edit'))
-                                <li class="breadcrumb-item"><a href="#">Edit</a></li>
+                                <li class="breadcrumb-item"><a>Edit</a></li>
                             @endif
                         </ol>
                     </nav>

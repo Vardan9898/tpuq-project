@@ -73,4 +73,9 @@
 .active a {
     color: #5e72e4;
 }
-
+.margin-main {
+    margin-left: 190px;
+}
+.margin-for-content {
+    left: 26%;
+}

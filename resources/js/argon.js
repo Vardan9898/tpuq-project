@@ -29,6 +29,8 @@ var Layout = (function() {
         $('.sidenav-toggler').data('action', 'sidenav-unpin');
         $('body').removeClass('g-sidenav-hidden').addClass('g-sidenav-show g-sidenav-pinned');
         $('body').append('<div class="backdrop d-xl-none" data-action="sidenav-unpin" data-target='+$('#sidenav-main').data('target')+' />');
+		$('.top-attribute').addClass('margin-for-content');
+		$('.main').addClass('margin-main');
 
         // Store the sidenav state in a cookie session
 		Cookies.set('sidenav-state', 'pinned');
@@ -39,6 +41,8 @@ var Layout = (function() {
         $('.sidenav-toggler').data('action', 'sidenav-pin');
         $('body').removeClass('g-sidenav-pinned').addClass('g-sidenav-hidden');
         $('body').find('.backdrop').remove();
+		$('.top-attribute').removeClass('margin-for-content');
+		$('.main').removeClass('margin-main');
 
         // Store the sidenav state in a cookie session
 		Cookies.set('sidenav-state', 'unpinned');
@@ -50,7 +54,7 @@ var Layout = (function() {
 
     if($(window).width() > 1200) {
         if($sidenavState == 'pinned') {
-            pinSidenav()
+            pinSidenav();
         }
 
         if(Cookies.get('sidenav-state') == 'unpinned') {
@@ -551,6 +555,7 @@ var Navbar = (function() {
 	// if (Cookies.get('dropdown-menu') == 'unpinned') {
 	// 	closeDropdown($(this))
 	// }
+
 
 })();
 
