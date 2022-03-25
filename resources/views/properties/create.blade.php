@@ -38,7 +38,7 @@
                     </div>
                     <div class="custom-control custom-checkbox mb-3 mt-3">
                         <input class="custom-control-input" id="customCheck" type="checkbox" name="mortgage_status"
-                               value="1">
+                               value="1" {{ old('mortgage_status') == '1' ? 'checked' : '' }}>
                         <label class="custom-control-label" for="customCheck">If your property is mortgaged please
                             check this input</label>
                     </div>

@@ -33,7 +33,7 @@
                             @csrf
                             <select class="form-control mr-3" name="tenant_id">
                                 @foreach($tenants as $tenant)
-                                    <option value="{{ $tenant->id }}">{{ $tenant->name }}</option>
+                                    <option {{ old('tenant_id') == $tenant->id ? "selected" : "" }} value="{{ $tenant->id }}">{{ $tenant->name }}</option>
                                 @endforeach
                             </select>
                             <div class="d-flex justify-content-center">
@@ -41,6 +41,11 @@
                             </div>
                         </form>
                     </li>
+                    @if($errors->any())
+                        <li class="list-group-item d-flex justify-content-center p-0 mb-2">
+                            @include('error')
+                        </li>
+                    @endif
                 </ul>
             </div>
         </div>

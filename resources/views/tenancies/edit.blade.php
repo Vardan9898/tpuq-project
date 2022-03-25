@@ -52,9 +52,17 @@
                             @method('PATCH')
                             <select class="form-control mr-3" name="tenant">
                                 @foreach($tenants as $tenant)
-                                    <option {{ $selectedTenant == $tenant ? 'selected' : '' }} value="{{ $tenant->id }}">{{ $tenant->name }}</option>
+                                    <option
+                                            @if(old('tenant') == $tenant->id)
+                                            selected
+                                            @elseif($selectedTenant == $tenant)
+                                            selected
+                                            @endif
+                                            value="{{ $tenant->id }}">{{ $tenant->name }}
+                                    </option>
                                 @endforeach
                             </select>
+                            @include('error')
                             <div class="d-flex justify-content-center">
                                 <button class="btn btn-primary">Update</button>
                             </div>

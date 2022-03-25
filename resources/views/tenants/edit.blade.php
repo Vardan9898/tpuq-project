@@ -12,14 +12,14 @@
                             <span class="input-group-text"><i class="ni ni-building"></i></span>
                         </div>
                         <input class="form-control" placeholder="Property name" type="text" id="name" name="name"
-                               value="{{ $tenant->name }}">
+                               value="{{ old('name', $tenant->name) }}">
                     </div>
                     <div class="input-group input-group-merge mt-3">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-map-marker"></i></span>
                         </div>
                         <input class="form-control" placeholder="Property address" type="text" id="address"
-                               name="address" value="{{ $tenant->address }}">
+                               name="address" value="{{ old('address', $tenant->address) }}">
                     </div>
                     <div class="input-group input-group-merge mt-3">
                         <input class="form-control" placeholder="Image" type="file" id="image" name="image">

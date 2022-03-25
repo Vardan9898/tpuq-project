@@ -3,11 +3,11 @@
         <div class="header-body">
             <div class="row align-items-center py-4">
                 <div class="col-lg-6 col-7">
-                    @if(active_route('properties') == true)
+                    @if(active_route('properties'))
                         <h6 class="h2 text-white d-inline-block mb-0 ml-6">Properties</h6>
-                    @elseif(active_route('tenants') == true)
+                    @elseif(active_route('tenants'))
                         <h6 class="h2 text-white d-inline-block mb-0 ml-6">Tenants</h6>
-                    @elseif(active_route('tenancies') == true)
+                    @elseif(active_route('tenancies'))
                         <h6 class="h2 text-white d-inline-block mb-0 ml-6">Tenancies</h6>
                     @endif
                     <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">

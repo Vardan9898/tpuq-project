@@ -25,6 +25,10 @@ class TenanciesController extends Controller
 
     public function store(Property $property)
     {
+        request()->validate([
+            'tenant_id' => 'required|exists:tenants,id',
+        ]);
+
         $property->tenancies()->create([
             'user_id'   => request()->user()->id,
             'tenant_id' => request('tenant_id'),
@@ -44,6 +48,10 @@ class TenanciesController extends Controller
 
     public function update(Tenancy $tenancy)
     {
+        request()->validate([
+            'tenant' => 'required|exists:tenants,id'
+        ]);
+
         $tenancy->update(['tenant_id' => request()->tenant]);
 
         return redirect()->action([TenanciesController::class, 'index'])->with('success', 'Tenancy updated!');

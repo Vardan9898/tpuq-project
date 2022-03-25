@@ -40,7 +40,12 @@
                     </div>
                     <div class="custom-control custom-checkbox mt-3">
                         <input class="custom-control-input" id="customCheck1" type="checkbox" name="mortgage_status"
-                                {{ $property->mortgage_status ? 'checked' : '' }}>
+                               @if(old('mortgage_status'))
+                               checked
+                               @elseif(!old() && $property->mortgage_status)
+                               checked
+                                @endif
+                        >
                         <label class="custom-control-label" for="customCheck1">If your property is mortgaged please
                             check this input</label>
                     </div>
