@@ -24,11 +24,11 @@ class UpdatePropertyRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'        => 'required|string|max:255',
-            'image'       => 'image|max:10240',
-            'address'     => 'required|string|max:255',
-            'description' => 'required|string|max:1000',
-            'price'       => 'required|numeric|digits_between:1,255',
+            'name'        => ['required', 'string', 'max:255'],
+            'image'       => ['image', 'max:10240'],
+            'address'     => ['required', 'string', 'max:255'],
+            'description' => ['required', 'string', 'max:1000'],
+            'price'       => ['required', 'numeric', 'digits_between:1,255']
         ];
     }
 }

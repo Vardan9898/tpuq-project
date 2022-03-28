@@ -24,7 +24,7 @@ class CreateTenancyRequest extends FormRequest
     public function rules()
     {
         return [
-            'tenant_id' => 'required|exists:tenants,id',
+            'tenant_id' => ['required', 'exists:tenants,id']
         ];
     }
 }

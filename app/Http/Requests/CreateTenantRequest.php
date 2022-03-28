@@ -24,9 +24,9 @@ class CreateTenantRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'    => 'required|string|max:255',
-            'image'   => 'required|image|max:10240',
-            'address' => 'required|string|max:255',
+            'name'    => ['required', 'string', 'max:255'],
+            'image'   => ['required', 'image', 'max:10240'],
+            'address' => ['required', 'string', 'max:255']
         ];
     }
 }
