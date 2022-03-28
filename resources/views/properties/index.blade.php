@@ -38,7 +38,7 @@
                         @foreach($properties as $property)
                             <div class="col-4 p-2">
                                 <div class="card">
-                                    <div class="propertyImage">
+                                    <div class="property-image">
                                         <img class="card-img-top" src="{{ asset($property->image_url) }}"
                                              alt="Image placeholder">
                                     </div>

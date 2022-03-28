@@ -10,7 +10,7 @@
                             <div class="col-lg-3 order-lg-2">
                                 <div class="card-profile-image">
                                     <img src="{{ asset($tenancy->tenant->image_url) }}"
-                                         class="rounded-circle imgForProfile" alt="...">
+                                         class="rounded-circle img-for-profile" alt="...">
                                 </div>
                             </div>
                         </div>

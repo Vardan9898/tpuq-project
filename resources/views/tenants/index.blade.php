@@ -7,7 +7,7 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-3 order-lg-2">
                         <div class="card-profile-image">
-                            <img src="{{ asset($tenant->image_url) }}" class="rounded-circle imgForProfile" alt="...">
+                            <img src="{{ asset($tenant->image_url) }}" class="rounded-circle img-for-profile" alt="...">
                         </div>
                     </div>
                 </div>
