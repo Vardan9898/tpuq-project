@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateUserRequest;
 use App\Models\User;
 
 class RegisterController extends Controller
@@ -16,20 +17,15 @@ class RegisterController extends Controller
         return view('register.create');
     }
 
-    public function store()
+    public function store(CreateUserRequest $request)
     {
-        $attributes = request()->validate([
-            'name'     => 'required|string|max:255',
-            'username' => 'required|string|max:255|min:3|unique:users,username',
-            'email'    => 'required|string|email|max:255|unique:users,email',
-            'password' => 'required|string|max:255|min:6',
-            'image'    => 'required|image|max:10240',
-        ]);
-        $attributes['image'] = request()->file('image')->store('public/images');
+        $request['image'] = request()->file('image')->store('public/images');
 
-        $user = User::create($attributes);
+        $user = User::create($request->all());
+
         auth()->login($user);
 
-        return redirect()->action([PropertiesController::class, 'index'])->with('success', 'Your account has been created.');
+        return redirect()->action([PropertiesController::class, 'index'])->with('success',
+            'Your account has been created.');
     }
 }
