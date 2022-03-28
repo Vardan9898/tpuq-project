@@ -38,4 +38,13 @@ class Property extends Model
     {
         return "storage/properties/$this->image";
     }
+
+    public function scopeFilter($query, array $filters)
+    {
+        $query->when($filters['search'] ?? false, function ($query, $search) {
+            $query
+                ->where('name', 'like', '%' . $search . '%')
+                ->orWhere('address', 'like', '%' . $search . '%');
+        });
+    }
 }

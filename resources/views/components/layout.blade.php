@@ -94,6 +94,24 @@
     <div class="main">
         <nav class="navbar navbar-top navbar-expand navbar-dark bg-primary border-bottom">
             <div class="container-fluid">
+                @if(active_route('properties.index'))
+                <form class="navbar-search navbar-search-light form-inline ml-5"
+                      id="navbar-search-main"
+                      method="GET"
+                      action="{{ action([\App\Http\Controllers\PropertiesController::class, 'index']) }}">
+                    <div class="form-group mb-0">
+                        <div class="input-group input-group-alternative input-group-merge">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-search"></i></span>
+                            </div>
+                            <input class="form-control" placeholder="Search" type="text" name="search">
+                        </div>
+                    </div>
+                    <button type="button" class="close" data-action="search-close" data-target="#navbar-search-main" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </form>
+                @endif
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav align-items-center ml-md-auto">
                         <li class="nav-item dropdown">
