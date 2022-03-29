@@ -117,7 +117,7 @@
                                     <i class="ni ni-single-02"></i>
                                     <span>My profile</span>
                                 </a>
-                                <form action="{{ action([\App\Http\Controllers\SessionsController::class, 'destroy']) }}"
+                                <form method="POST" action="{{ route('logout') }}"
                                       method="POST">
                                     @csrf
                                     <button type="submit" class="dropdown-item">

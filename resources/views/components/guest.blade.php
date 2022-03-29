@@ -31,7 +31,8 @@
                         </div>
                         <div class="row mt-3">
                             <div class="col-6">
-                                <a href="{{ action([\App\Http\Controllers\ForgotPasswordController::class, 'index']) }}" class="text-light"><small>Forgot password?</small></a>
+                                <a href="{{ route('password.request') }}" class="text-light"><small>Forgot
+                                        password?</small></a>
                             </div>
                         </div>
                     </div>
@@ -47,13 +48,13 @@
                     <div class="col-xl-6">
                         <div class="copyright text-center text-xl-left text-muted">
                             &copy; 2022 <a href="#" class="font-weight-bold ml-1"
-                                           target="_blank">TPUQ</a>
+                                           target="_blank">{{ config('app.name') }}</a>
                         </div>
                     </div>
                     <div class="col-xl-6">
                         <ul class="nav nav-footer justify-content-center justify-content-xl-end">
                             <li class="nav-item">
-                                <a href="#" class="nav-link" target="_blank">TPUQ</a>
+                                <a href="#" class="nav-link" target="_blank">{{ config('app.name') }}</a>
                             </li>
                             <li class="nav-item">
                                 <a href="#" class="nav-link" target="_blank">About Us</a>

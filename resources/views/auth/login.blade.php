@@ -1,7 +1,6 @@
 <x-layout>
     <x-guest>
-        <form action="{{ action([\App\Http\Controllers\SessionsController::class, 'store']) }}"
-              method="POST">
+        <form action="{{ route('login') }}" method="POST">
             @csrf
             <div class="form-group mb-3">
                 <div class="input-group input-group-merge input-group-alternative">

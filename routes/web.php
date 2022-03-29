@@ -1,9 +1,6 @@
 <?php
 
-use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\PropertiesController;
-use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\SessionsController;
 use App\Http\Controllers\TenanciesController;
 use App\Http\Controllers\TenantsController;
 use Illuminate\Support\Facades\Route;
@@ -18,25 +15,11 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-//register
-Route::group(['middleware' => ['guest']], function () {
-    Route::get('/', [RegisterController::class, 'index'])->name('home');
-    Route::get('register', [RegisterController::class, 'create']);
-    Route::post('register', [RegisterController::class, 'store']);
+Route::get('/', function () {
+    return view('home');
 });
 
-//session
-Route::get('login', [SessionsController::class, 'create'])->middleware('guest')->name('login');
-Route::post('login', [SessionsController::class, 'store'])->middleware('guest');
-Route::post('logout', [SessionsController::class, 'destroy'])->middleware('auth');
-
-//forgot password
-Route::group(['middleware' => ['guest']], function () {
-    Route::get('forgot-password', [ForgotPasswordController::class, 'index']);
-    Route::post('forgot-password', [ForgotPasswordController::class, 'store']);
-    Route::get('reset-password/{token}', [ForgotPasswordController::class, 'edit']);
-    Route::post('reset-password', [ForgotPasswordController::class, 'update']);
-});
+require __DIR__ . '/auth.php';
 
 //properties
 Route::group(['middleware' => ['auth']], function () {

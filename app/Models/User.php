@@ -38,11 +38,6 @@ class User extends Authenticatable implements CanResetPassword
         'email_verified_at' => 'datetime',
     ];
 
-    protected function setPasswordAttribute($password)
-    {
-        $this->attributes['password'] = bcrypt($password);
-    }
-
     public function properties()
     {
         return $this->hasMany(Property::class);

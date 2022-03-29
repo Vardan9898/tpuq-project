@@ -1,10 +1,10 @@
 <x-layout>
     <x-guest>
         <section>
-            <form action="{{ action([\App\Http\Controllers\ForgotPasswordController::class, 'update']) }}"
+            <form action="{{ route('password.update') }}"
                   method="POST">
                 @csrf
-                <input type="hidden" name="token" value="{{ $token }}">
+                <input type="hidden" name="token" value="{{ $request->route('token') }}">
                 <div class="form-group mb-3">
                     <div class="input-group input-group-merge input-group-alternative">
                         <div class="input-group-prepend">
@@ -30,7 +30,7 @@
                             <span class="input-group-text"><i
                                         class="ni ni-lock-circle-open"></i></span>
                         </div>
-                        <input type="password" class="form-control" id="password-confirm" name="password_confirmation"
+                        <input type="password" class="form-control" id="password_confirmation" name="password_confirmation"
                                placeholder="Confirm password">
                     </div>
                 </div>

@@ -1,7 +1,7 @@
 <x-layout>
     <x-guest>
         <section>
-            <form action="{{ action([\App\Http\Controllers\ForgotPasswordController::class, 'store']) }}" method="POST"
+            <form action="{{ route('password.email') }}" method="POST"
                   class="mt-2 mb-3">
                 @csrf
                 <div class="mb-3">

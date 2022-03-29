@@ -15,13 +15,13 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ action([\App\Http\Controllers\SessionsController::class, 'create']) }}"
+                        <a href="{{ route('login') }}"
                            class="nav-link">
                             <span class="nav-link-inner--text">Login</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ action([\App\Http\Controllers\RegisterController::class, 'create']) }}"
+                        <a href="{{ route('register') }}"
                            class="nav-link">
                             <span class="nav-link-inner--text">Register</span>
                         </a>
