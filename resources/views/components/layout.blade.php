@@ -11,7 +11,7 @@
     <title>Tenancy project</title>
 </head>
 
-<body class="g-sidenav-hidden">
+<body class="@if(isset($_COOKIE['sidenav-state']) && $_COOKIE['sidenav-state'] == 'pinned') g-sidenav-show g-sidenav-pinned @else g-sidenav-hidden @endif">
 @auth()
     <nav class="sidenav navbar navbar-vertical fixed-left navbar-expand-xs navbar-light bg-white" id="sidenav-main">
         <div class="scrollbar-inner">
@@ -23,13 +23,14 @@
                 </a>
                 <div class="ml-auto">
                     <!-- Sidenav toggler -->
-                    <div class="sidenav-toggler d-none d-xl-block" data-action="sidenav-unpin"
+                    <div class="sidenav-toggler @if(isset($_COOKIE['sidenav-state']) && $_COOKIE['sidenav-state'] == 'pinned') active @endif d-none d-xl-block"
+                         data-action="sidenav-unpin"
                          data-target="#sidenav-main">
-                            <div class="sidenav-toggler-inner">
-                                <i class="sidenav-toggler-line"></i>
-                                <i class="sidenav-toggler-line"></i>
-                                <i class="sidenav-toggler-line"></i>
-                            </div>
+                        <div class="sidenav-toggler-inner">
+                            <i class="sidenav-toggler-line"></i>
+                            <i class="sidenav-toggler-line"></i>
+                            <i class="sidenav-toggler-line"></i>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -91,7 +92,7 @@
         </div>
     </nav>
     {{--    top nav--}}
-    <div class="main">
+    <div class="main @if(isset($_COOKIE['sidenav-state']) && $_COOKIE['sidenav-state'] == 'pinned') margin-main @endif">
         <nav class="navbar navbar-top navbar-expand navbar-dark bg-primary border-bottom">
             <div class="container-fluid">
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -134,7 +135,7 @@
 
         <x-header/>
 
-        <div class="container position-absolute top-attribute">
+        <div class="container position-absolute top-attribute @if(isset($_COOKIE['sidenav-state']) && $_COOKIE['sidenav-state'] == 'pinned') margin-for-content @endif">
             @endauth
 
             {{ $slot }}
