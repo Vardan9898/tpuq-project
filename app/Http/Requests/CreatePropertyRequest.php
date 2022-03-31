@@ -25,7 +25,7 @@ class CreatePropertyRequest extends FormRequest
     {
         return [
             'name'            => ['required', 'string', 'max:255'],
-            'image'           => ['required', 'image', 'max:10240'],
+            'image'           => ['image', 'max:10240'],
             'address'         => ['required', 'string', 'max:255'],
             'description'     => ['required', 'string', 'max:1000'],
             'mortgage_status' => ['boolean'],
