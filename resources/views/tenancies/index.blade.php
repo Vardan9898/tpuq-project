@@ -58,6 +58,11 @@
                 @endforeach
             </div>
             {{ $tenancies->links('pagination::bootstrap-5') }}
+        @else
+            <div class="mt-9">
+                <h1 class="d-flex justify-content-center pt-5 text-gray">There is no tenancies!</h1>
+                <h2 class="d-flex justify-content-center text-gray">Create tenancy to see here tenancies.</h2>
+            </div>
         @endif
     </main>
 </x-layout>

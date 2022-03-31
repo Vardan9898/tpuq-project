@@ -1,4 +1,5 @@
 <x-layout>
+    @if($tenants->count())
         <div class="row text-center d-flex justify-content-center mt-5 mb-2">
             @foreach($tenants as $tenant)
                 <div class="card card-profile tenants col-lg-3 m-3 p-0">
@@ -48,4 +49,10 @@
             @endforeach
         </div>
         {{ $tenants->links('pagination::bootstrap-5') }}
+    @else
+        <div class="mt-9">
+            <h1 class="d-flex justify-content-center pt-5 text-gray">There is no tenants!</h1>
+            <h2 class="d-flex justify-content-center text-gray">Create tenant to see here tenants.</h2>
+        </div>
+    @endif
 </x-layout>

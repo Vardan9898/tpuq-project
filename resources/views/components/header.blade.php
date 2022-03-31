@@ -9,6 +9,8 @@
                         <h6 class="h2 text-white d-inline-block mb-0 ml-6">Tenants</h6>
                     @elseif(active_route('tenancies'))
                         <h6 class="h2 text-white d-inline-block mb-0 ml-6">Tenancies</h6>
+                    @elseif(active_route('profile'))
+                        <h6 class="h2 text-white d-inline-block mb-0 ml-6">Profile</h6>
                     @endif
                     <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                         <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
@@ -21,6 +23,8 @@
                                 <li class="breadcrumb-item"><a>Create</a></li>
                             @elseif(str_contains(\Illuminate\Support\Facades\Route::currentRouteName(), 'edit'))
                                 <li class="breadcrumb-item"><a>Edit</a></li>
+                            @elseif(str_contains(\Illuminate\Support\Facades\Route::currentRouteName(), 'show'))
+                                <li class="breadcrumb-item"><a>Show</a></li>
                             @endif
                         </ol>
                     </nav>

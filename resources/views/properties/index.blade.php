@@ -89,6 +89,12 @@
                         @endforeach
                     </div>
                     {{ $properties->links('pagination::bootstrap-5') }}
+                @else
+                    <div class="mt-9">
+                        <h1 class="d-flex justify-content-center pt-5 text-gray">There is no properties!</h1>
+                        <h2 class="d-flex justify-content-center text-gray">Create properties to see here
+                            properties.</h2>
+                    </div>
                 @endif
             </main>
             @guest()
