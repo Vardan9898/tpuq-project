@@ -15,7 +15,7 @@
                             </a>
                         </h3>
                     </li>
-                    <li class="list-group-item d-flex align-items-center">
+                    <li class="list-group-item d-flex align-items-center justify-content-center">
                         <i class="ni ni-pin-3 mr-3"></i>
                         <p class="m-0 text-sm-left">{{ $property->address }}</p>
                     </li>
