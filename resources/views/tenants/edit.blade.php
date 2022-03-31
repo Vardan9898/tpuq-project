@@ -1,37 +1,47 @@
 <x-layout>
-    <div class="mt-5 col-6 m-auto d-flex justify-content-center">
-        <h1>Here you can update tenant {{ $tenant->name }}</h1>
-    </div>
-    <div class="col-4 m-auto mt-5">
-        <form action="{{ action([\App\Http\Controllers\TenantsController::class, 'update'], $tenant->id) }}"
-              method="POST" enctype="multipart/form-data">
-            @csrf
-            @method('PATCH')
-            <div class="mb-3">
-                <label class="form-label">Tenant name</label>
-                <input type="text" class="form-control" id="name" name="name" value="{{ $tenant->name }}">
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Tenant address</label>
-                <input type="text" class="form-control" id="address" name="address" value="{{ $tenant->address }}">
-            </div>
-            <div class="input mb-4">
-                <label for="image" class="form-label mb-3">Tenant image</label>
-                <div style="max-width: 150px;" class="mb-2">
-                    <img width="100%" src="{{ asset($tenant->image_url) }}" alt="...">
+    <div class="cards d-flex justify-content-center row mt-5">
+        <div class="card position-relative mt-5">
+            <form action="{{ action([\App\Http\Controllers\TenantsController::class, 'update'], $tenant->id) }}"
+                  method="POST" enctype="multipart/form-data">
+                @csrf
+                @method('PATCH')
+                <img class="card-img-top" src="{{ asset($tenant->image_url) }}" alt="...">
+                <div class="card-body">
+                    <div class="input-group input-group-merge">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="ni ni-building"></i></span>
+                        </div>
+                        <input class="form-control" placeholder="Property name" type="text" id="name" name="name"
+                               value="{{ old('name', $tenant->name) }}">
+                    </div>
+                    <div class="input-group input-group-merge mt-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-map-marker"></i></span>
+                        </div>
+                        <input class="form-control" placeholder="Property address" type="text" id="address"
+                               name="address" value="{{ old('address', $tenant->address) }}">
+                    </div>
+                    <div class="input-group input-group-merge mt-3">
+                        <input class="form-control" placeholder="Image" type="file" id="image" name="image">
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="ni ni-image"></i></span>
+                        </div>
+                    </div>
+                    @include('error')
+                    <button type="submit" class="btn btn-primary mt-5">Update</button>
+                    <a href="{{ url()->previous() }}"
+                       class="btn btn-secondary bg-gradient-gray border-0 text-white mt-5">Back</a>
                 </div>
-                <input type="file" class="form-control" id="image" name="image">
-            </div>
-            @include('error')
-            <div>
-                <button type="submit" class="btn btn-warning">Update tenant</button>
-            </div>
-        </form>
-        <form action="{{ action([\App\Http\Controllers\TenantsController::class, 'destroy'], $tenant->id) }}"
-              class="mt-2" method="POST">
-            @csrf
-            @method('DELETE')
-            <button class="btn btn-danger">Delete</button>
-        </form>
+            </form>
+            <form action="{{ action([\App\Http\Controllers\TenantsController::class, 'destroy'], $tenant->id) }}"
+                  class="mt-2 position-relative delete-button" method="POST">
+                @csrf
+                @method('DELETE')
+                <div class="tooltip1 position-absolute edit-tooltip">
+                    <button type="submit" class="border-0 delete-btn"><i class="fas fa-trash"></i></button>
+                    <span class="tooltiptext">Delete</span>
+                </div>
+            </form>
+        </div>
     </div>
 </x-layout>

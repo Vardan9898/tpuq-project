@@ -1,45 +1,58 @@
 <x-layout>
-    <link rel="stylesheet" href="{{ asset('css/style-for-properties-index.css') }}">
     <main>
         @if($tenancies->count())
-            <div class="cards d-flex justify-content-center row">
+            <div class="row text-center d-flex justify-content-center mt-5 mb-2">
                 @foreach($tenancies as $tenancy)
-                    <div class="card col-3">
-                        <div class="card-header">
-                            <img src="{{ asset($tenancy->property->image_url) }}"
-                                 alt="..."/>
-                        </div>
-                        <div class="card-body">
-                            @if($tenancy->property->mortgage_status)
-                                <span class="tag tag-teal mb-2">Mortgaged</span>
-                            @endif
-                            <a class="propertyName"
-                               href="{{ action([\App\Http\Controllers\PropertiesController::class, 'show'], $tenancy->property->id) }}">{{ $tenancy->property->name }}</a>
-                            <div class="info">
-                                <p>Address: {{ $tenancy->property->address }}</p>
-                                <p>Description: {{ $tenancy->property->description }}</p>
-                                <p>Price: ${{ $tenancy->property->price }}</p>
-                            </div>
-                            <div class="user mb-3">
-                                <img
-                                        src="{{ asset($tenancy->tenant->image_url) }}"
-                                        alt="user"/>
-                                <div class="user-info mt-2">
-                                    <p>Tenant: {{ $tenancy->tenant->name }}</p>
+                    <div class="card card-profile tenants col-lg-3 m-3 p-0">
+                        <img src="{{ asset($tenancy->property->image_url) }}" alt="Image placeholder"
+                             class="card-img-top w-100">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-3 order-lg-2">
+                                <div class="card-profile-image">
+                                    <img src="{{ asset($tenancy->tenant->image_url) }}"
+                                         class="rounded-circle img-for-profile" alt="...">
                                 </div>
                             </div>
-                            <div class="buttons">
-                                <a href="{{ action([\App\Http\Controllers\TenanciesController::class, 'create'], $tenancy->property->id) }}"
-                                   class="tag make tag-teal mb-2">Make tenancy</a>
+                        </div>
+                        <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
+                            <div class="d-flex justify-content-between">
                                 <a href="{{ action([\App\Http\Controllers\TenanciesController::class, 'edit'], $tenancy->id) }}"
-                                   class="tag edit tag-teal mb-2">Edit</a>
-                                <form action="{{ action([\App\Http\Controllers\TenanciesController::class, 'destroy'], $tenancy->id) }}"
-                                      method="POST">
+                                   class="btn btn-sm btn-info mr-4 d-flex align-items-center">Edit</a>
+                                <form
+                                        action="{{ action([\App\Http\Controllers\TenanciesController::class, 'destroy'], $tenancy->id) }}"
+                                        class="delete-button d-flex align-items-center" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="tag delete tag-teal mb-2">Delete</button>
+                                    <div class="tooltip1">
+                                        <button type="submit" class="border-0 delete-btn"><i class="fas fa-trash"></i>
+                                        </button>
+                                        <span class="tooltiptext">Delete</span>
+                                    </div>
                                 </form>
                             </div>
+                        </div>
+                        <div class="card-body p-0">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item"><h3 class="m-0"><a
+                                                href="{{ action([\App\Http\Controllers\PropertiesController::class, 'show'], $tenancy->property->id) }}">{{ $tenancy->property->name }}</a>
+                                    </h3></li>
+                                <li class="list-group-item address d-flex justify-content-center align-items-center address-li">
+                                    <i class="ni ni-pin-3 mr-2"></i>
+                                    <p class="m-0 address-p">{{ $tenancy->property->address }}</p>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-center"><p class="m-0">
+                                        ${{ $tenancy->property->price }}</p>
+                                    @if($tenancy->property->mortgage_status)
+                                        <div class="col-auto">
+                                            <span class="badge badge-lg badge-danger">Mortgaged</span>
+                                        </div>
+                                    @endif
+                                </li>
+                                <li class="list-group-item address d-flex justify-content-center align-items-center">
+                                    <i class="ni ni-circle-08 mr-2 mb-1"></i>
+                                    <h5 class="h3 m-0">{{ $tenancy->tenant->name }}</h5>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 @endforeach

@@ -1,0 +1,87 @@
+.delete-btn {
+    background-color: $white;
+}
+.tooltip1 {
+    position: relative;
+    display: inline-block;
+    .tooltiptext {
+        visibility: hidden;
+        width: 120px;
+        color: $red;
+        text-align: center;
+        position: absolute;
+        z-index: $zindex-tooltip;
+        top: 100%;
+        left: 50%;
+        margin-left: -60px;
+    }
+    &:hover {
+        .tooltiptext {
+            visibility: visible;
+        }
+        .fa-trash {
+            color: $red;
+        }
+    }
+}
+.fa-trash {
+    font-size: 18px;
+    color: $gray-500;
+}
+.card-img-top {
+    height: 200px;
+}
+.address {
+    &-li {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    &-p {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+.edit-tooltip {
+    bottom: 38px;
+    right: 25px;
+}
+.img-for-profile {
+    width: 140px;
+    height: 140px;
+}
+.img-for-edit {
+    height: 250px;
+}
+.property-image img {
+    height: 250px;
+}
+.fixed-bottom {
+    align-items: center;
+}
+.avatar {
+    img {
+        width: 36px;
+        height: 36px;
+    }
+}
+.top-attribute {
+    top: 10%;
+    left: 17%;
+}
+.active {
+    a {
+        color: $blue;
+    }
+}
+.margin {
+    &-main {
+        margin-left: 190px;
+    }
+    &-for-content {
+        left: 26%;
+    }
+}

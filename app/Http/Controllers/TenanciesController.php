@@ -13,7 +13,7 @@ class TenanciesController extends Controller
     public function index()
     {
         return view('tenancies.index', [
-            'tenancies' => Tenancy::latest()->paginate(7)->withQueryString(),
+            'tenancies' => Tenancy::latest()->paginate(6)->withQueryString(),
         ]);
     }
 
