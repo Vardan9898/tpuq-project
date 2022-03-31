@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateTenancyRequest;
+use App\Http\Requests\UpdateTenancyRequest;
 use App\Models\Property;
 use App\Models\Tenancy;
 use App\Models\Tenant;
@@ -23,15 +25,15 @@ class TenanciesController extends Controller
         ]);
     }
 
-    public function store(Property $property)
+    public function store(CreateTenancyRequest $request, Property $property)
     {
         request()->validate([
             'tenant_id' => 'required|exists:tenants,id',
         ]);
 
         $property->tenancies()->create([
-            'user_id'   => request()->user()->id,
-            'tenant_id' => request('tenant_id'),
+            'user_id'   => $request->user()->id,
+            'tenant_id' => $request->tenant_id,
         ]);
 
         return redirect()->action([TenanciesController::class, 'index'])->with('success', 'Tenancy created!');
@@ -46,13 +48,9 @@ class TenanciesController extends Controller
         ]);
     }
 
-    public function update(Tenancy $tenancy)
+    public function update(UpdateTenancyRequest $request, Tenancy $tenancy)
     {
-        request()->validate([
-            'tenant' => 'required|exists:tenants,id'
-        ]);
-
-        $tenancy->update(['tenant_id' => request()->tenant]);
+        $tenancy->update(['tenant_id' => $request->tenant]);
 
         return redirect()->action([TenanciesController::class, 'index'])->with('success', 'Tenancy updated!');
     }
