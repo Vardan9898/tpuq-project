@@ -27,10 +27,6 @@ class TenanciesController extends Controller
 
     public function store(CreateTenancyRequest $request, Property $property)
     {
-        request()->validate([
-            'tenant_id' => 'required|exists:tenants,id',
-        ]);
-
         $property->tenancies()->create([
             'user_id'   => $request->user()->id,
             'tenant_id' => $request->tenant_id,
