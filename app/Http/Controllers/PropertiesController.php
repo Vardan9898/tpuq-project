@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreatePropertyRequest;
+use App\Http\Requests\UpdatePropertyRequest;
 use App\Models\Property;
-use Illuminate\Http\Request;
 
 class PropertiesController extends Controller
 {
@@ -21,22 +22,13 @@ class PropertiesController extends Controller
         return view('properties.create');
     }
 
-    public function store(Request $request)
+    public function store(CreatePropertyRequest $request)
     {
-        $attributes = $request->validate([
-            'name'            => 'required|string|max:255',
-            'image'           => 'required|image|max:10240',
-            'address'         => 'required|string|max:255',
-            'description'     => 'required|string|max:1000',
-            'mortgage_status' => 'boolean',
-            'price'           => 'required|numeric|max:999000000',
-        ]);
-
-        $attributes['user_id'] = auth()->id();
+        $request['user_id'] = auth()->id();
         $request->file('image')->store('/public/properties');
-        $attributes['image'] = $request->file('image')->hashName();
+        $request['image'] = $request->file('image')->hashName();
 
-        Property::create($attributes);
+        Property::create($request->all());
 
         return redirect()->action([PropertiesController::class, 'index'])->with('success', 'Property created!');
     }
@@ -55,16 +47,8 @@ class PropertiesController extends Controller
         ]);
     }
 
-    public function update(Request $request, Property $property)
+    public function update(UpdatePropertyRequest $request, Property $property)
     {
-        $request->validate([
-            'name'        => 'required|string|max:255',
-            'image'       => 'image|max:10240',
-            'address'     => 'required|string|max:255',
-            'description' => 'required|string|max:1000',
-            'price'       => 'required|numeric|digits_between:1,255',
-        ]);
-
         $attributes = [
             'name'            => $request->name,
             'address'         => $request->address,
