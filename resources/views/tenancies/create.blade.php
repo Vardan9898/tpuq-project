@@ -32,12 +32,13 @@
                               class="d-flex justify-content-around w-75" method="POST">
                             @csrf
                             <select class="form-control mr-3" name="tenant_id">
+                                <option>@if($tenants->count()) Select the tenant @else Create tenant for making tenancies @endif</option>
                                 @foreach($tenants as $tenant)
                                     <option {{ old('tenant_id') == $tenant->id ? "selected" : "" }} value="{{ $tenant->id }}">{{ $tenant->name }}</option>
                                 @endforeach
                             </select>
                             <div class="d-flex justify-content-center">
-                                <button class="btn btn-success">Create</button>
+                                <button class="btn btn-success" @if(!$tenants->count()) disabled @endif>Create</button>
                             </div>
                         </form>
                     </li>
