@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProfilesController;
 use App\Http\Controllers\PropertiesController;
 use App\Http\Controllers\TenanciesController;
 use App\Http\Controllers\TenantsController;
@@ -30,7 +31,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::delete('properties/{property}', [PropertiesController::class, 'destroy']);
 });
 Route::get('properties', [PropertiesController::class, 'index'])->name('properties.index');
-Route::get('properties/{property}', [PropertiesController::class, 'show']);
+Route::get('properties/{property}', [PropertiesController::class, 'show'])->name('properties.show');
 
 //tenants
 Route::group(['middleware' => ['auth']], function () {
@@ -50,4 +51,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::delete('tenancies/{tenancy}', [TenanciesController::class, 'destroy']);
     Route::get('tenancies/{tenancy}/edit', [TenanciesController::class, 'edit'])->name('tenancies.edit');
     Route::patch('tenancies/{tenancy}', [TenanciesController::class, 'update']);
+});
+
+//profile
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('profile/{id}', [ProfilesController::class, 'show'])->name('profile.show');
+    Route::patch('profile/{id}', [ProfilesController::class, 'update'])->name('profile.update');
 });

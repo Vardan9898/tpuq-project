@@ -43,6 +43,16 @@ class User extends Authenticatable implements CanResetPassword
         return $this->hasMany(Property::class);
     }
 
+    public function tenants()
+    {
+        return $this->hasMany(Tenant::class);
+    }
+
+    public function tenancies()
+    {
+        return $this->hasMany(Tenancy::class);
+    }
+
     public function getImageUrlAttribute()
     {
         return "storage/users/$this->image";
