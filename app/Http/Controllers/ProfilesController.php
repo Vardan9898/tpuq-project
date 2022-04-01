@@ -11,10 +11,22 @@ class ProfilesController extends Controller
 {
     public function show(Property $property, Tenancy $tenancy)
     {
+        if ($property->count()) {
+            $percentOfProperties = round(auth()->user()->properties()->count() / $property->count() * 100);
+        } else {
+            $percentOfProperties = 0;
+        }
+
+        if ($tenancy->count()) {
+            $percentOfTenancies = round(auth()->user()->properties()->count() / $property->count() * 100);
+        } else {
+            $percentOfTenancies = 0;
+        }
+
         return view('profile.index', [
             'user'                => auth()->user(),
-            'percentOfProperties' => round(auth()->user()->properties()->count() / $property->count() * 100),
-            'percentOfTenancies'  => round(auth()->user()->tenancies()->count() / $tenancy->count() * 100),
+            'percentOfProperties' => $percentOfProperties,
+            'percentOfTenancies'  => $percentOfTenancies,
         ]);
     }
 

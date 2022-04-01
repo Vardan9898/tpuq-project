@@ -24,7 +24,6 @@ require __DIR__ . '/auth.php';
 
 //properties
 Route::get('properties', [PropertiesController::class, 'index'])->name('properties.index');
-Route::get('properties/{property}', [PropertiesController::class, 'show'])->name('properties.show');
 Route::group(['middleware' => ['auth']], function () {
     Route::get('properties/create', [PropertiesController::class, 'create'])->name('properties.create');
     Route::post('properties', [PropertiesController::class, 'store']);
@@ -32,6 +31,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::patch('properties/{property}', [PropertiesController::class, 'update']);
     Route::delete('properties/{property}', [PropertiesController::class, 'destroy']);
 });
+Route::get('properties/{property}', [PropertiesController::class, 'show'])->name('properties.show');
 
 //tenants
 Route::group(['middleware' => ['auth']], function () {

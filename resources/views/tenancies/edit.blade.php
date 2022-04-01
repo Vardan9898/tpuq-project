@@ -1,12 +1,13 @@
 <x-layout>
     <div class="row text-center d-flex justify-content-center mt-5 mb-2">
         <div class="card card-profile tenants col-6 m-3 p-0">
-            <img src="{{ asset($tenancy->property->image_url) }}" alt="Image placeholder"
+            <img src="{{ $tenancy->property->image ? asset($tenancy->property->image_url) : asset('/storage/default_images/property-image.jpg') }}"
+                 alt="Image placeholder"
                  class="card-img-top w-100 h-auto">
             <div class="row justify-content-center">
                 <div class="col-lg-3 order-lg-2">
                     <div class="card-profile-image">
-                        <img src="{{ asset($tenancy->tenant->image_url) }}"
+                        <img src="{{ $tenancy->tenant->image ? asset($tenancy->tenant->image_url) : asset('/storage/default_images/tenant-image.png') }}"
                              class="rounded-circle img-for-profile" alt="...">
                     </div>
                 </div>

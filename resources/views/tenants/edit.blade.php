@@ -5,7 +5,9 @@
                   method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PATCH')
-                <img class="card-img-top" src="{{ asset($tenant->image_url) }}" alt="...">
+                <img class="card-img-top"
+                     src="{{ $tenant->image ? asset($tenant->image_url) : asset('/storage/default_images/tenant-image.png') }}"
+                     alt="...">
                 <div class="card-body">
                     <div class="input-group input-group-merge">
                         <div class="input-group-prepend">

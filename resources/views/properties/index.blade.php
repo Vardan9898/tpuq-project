@@ -56,7 +56,8 @@
                             <div class="col-4 p-2">
                                 <div class="card">
                                     <div class="property-image">
-                                        <img class="card-img-top" src="{{ asset($property->image_url) }}"
+                                        <img class="card-img-top"
+                                             src="{{ $property->image ? asset($property->image_url) : asset('/storage/default_images/property-image.jpg') }}"
                                              alt="Image placeholder">
                                     </div>
                                     <ul class="list-group list-group-flush">

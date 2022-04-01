@@ -62,7 +62,9 @@
             @endguest
             <div class="cards d-flex justify-content-center row mt-4 row">
                 <div class="card mt-5 col-6 p-0">
-                    <img class="card-img-top h-auto" src="{{ asset($property->image_url) }}" alt="...">
+                    <img class="card-img-top h-auto"
+                         src="{{ $property->image ? asset($property->image_url) : asset('/storage/default_images/property-image.jpg') }}"
+                         alt="...">
                     <div class="card-body">
                         @if($property->mortgage_status)
                             <div>

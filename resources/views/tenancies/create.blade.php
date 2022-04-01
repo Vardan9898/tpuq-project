@@ -1,7 +1,8 @@
 <x-layout>
     <div class="row text-center d-flex justify-content-center mt-5 mb-2">
         <div class="card card-profile tenants col-6 m-3 p-0">
-            <img src="{{ asset($property->image_url) }}" alt="Image placeholder"
+            <img src="{{ $property->image ? asset($property->image_url) : asset('/storage/default_images/property-image.jpg') }}"
+                 alt="Image placeholder"
                  class="card-img-top w-100 h-auto">
             <div class="card-body p-0">
                 <ul class="list-group list-group-flush">
@@ -32,7 +33,8 @@
                               class="d-flex justify-content-around w-75" method="POST">
                             @csrf
                             <select class="form-control mr-3" name="tenant_id">
-                                <option>@if($tenants->count()) Select the tenant @else Create tenant for making tenancies @endif</option>
+                                <option>@if($tenants->count()) Select the tenant @else Create tenant for making
+                                    tenancies @endif</option>
                                 @foreach($tenants as $tenant)
                                     <option {{ old('tenant_id') == $tenant->id ? "selected" : "" }} value="{{ $tenant->id }}">{{ $tenant->name }}</option>
                                 @endforeach

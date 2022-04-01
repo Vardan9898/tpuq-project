@@ -10,7 +10,8 @@
                             <div class="col-lg-3 order-lg-2">
                                 <div class="card-profile-image">
                                     <a>
-                                        <img src="{{ asset($user->image_url) }}" class="rounded-circle img-for-profile"
+                                        <img src="{{ $user->image ? asset($user->image_url) : asset('/storage/default_images/profile-image.jpg') }}"
+                                             class="rounded-circle img-for-profile"
                                              alt="...">
                                     </a>
                                 </div>
